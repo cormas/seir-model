@@ -1,6 +1,6 @@
 Class {
 	#name : #REDState,
-	#superclass : #CMAbstractModel,
+	#superclass : #Object,
 	#instVars : [
 		'individual'
 	],
