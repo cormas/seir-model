@@ -19,5 +19,7 @@ REDSusceptibleState >> isSusceptible [
 { #category : #'instance creation' }
 REDSusceptibleState >> newState [
 
-	^ REDExposedState new
+	^ (individual neighbouringSimilarAgents anySatisfy: [ :neighbour | neighbour isInfectious ])
+		ifTrue: [ REDExposedState forIndividual: individual ]
+		ifFalse: [ self ]
 ]

@@ -19,5 +19,7 @@ REDInfectiousState >> isInfectious [
 { #category : #'instance creation' }
 REDInfectiousState >> newState [
 
-	^ REDRecoveredState new
+	^ (Random new next < 0.1)
+		ifTrue: [ REDRecoveredState forIndividual: individual ]
+		ifFalse: [ self ]
 ]

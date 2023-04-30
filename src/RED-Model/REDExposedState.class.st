@@ -19,5 +19,5 @@ REDExposedState >> isExposed [
 { #category : #'instance creation' }
 REDExposedState >> newState [
 
-	^ REDInfectiousState new
+	^ REDInfectiousState forIndividual: individual
 ]

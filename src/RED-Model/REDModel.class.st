@@ -17,7 +17,7 @@ REDModel class >> defaultInit [
 { #category : #'as yet unclassified' }
 REDModel class >> numberOfIndividuals [
 
-	^ 50
+	^ 1000
 ]
 
 { #category : #init }
@@ -57,7 +57,7 @@ REDModel >> theCells: aCollection [
 { #category : #accessing }
 REDModel >> theIndividuals [
 
-	^ theIndividuals ifNil: [ OrderedCollection new ]
+	^ theIndividuals ifNil: [ theIndividuals := OrderedCollection new ]
 ]
 
 { #category : #accessing }

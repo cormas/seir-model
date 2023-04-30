@@ -30,13 +30,43 @@ REDIndividual >> initialize [
 		ifFalse: [ REDInfectiousState forIndividual: self ].
 ]
 
+{ #category : #testing }
+REDIndividual >> isExposed [
+
+	^ state isExposed
+]
+
+{ #category : #testing }
+REDIndividual >> isInfectious [
+
+	^ state isInfectious
+]
+
+{ #category : #testing }
+REDIndividual >> isRecovered [
+
+	^ state isRecovered
+]
+
+{ #category : #testing }
+REDIndividual >> isSusceptible [
+
+	^ state isSusceptible
+]
+
 { #category : #accessing }
 REDIndividual >> move [
 
 	self randomWalkConstrainedBy: [ :cell | cell noOccupant ].
 ]
 
-{ #category : #accessing }
+{ #category : #'as yet unclassified' }
+REDIndividual >> numberOfInfectiousNeighbours [
+
+	^ (self neighbouringSimilarAgents select: [ :each | each isInfectious ]) size
+]
+
+{ #category : #pov }
 REDIndividual >> pov [
 
 	^ state color

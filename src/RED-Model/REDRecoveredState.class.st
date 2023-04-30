@@ -19,5 +19,5 @@ REDRecoveredState >> isRecovered [
 { #category : #'instance creation' }
 REDRecoveredState >> newState [
 
-	^ REDSusceptibleState new
+	^ REDSusceptibleState forIndividual: individual
 ]

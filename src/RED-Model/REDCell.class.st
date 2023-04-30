@@ -10,7 +10,7 @@ REDCell class >> entityName [
 	^ 'Cell'
 ]
 
-{ #category : #accessing }
+{ #category : #pov }
 REDCell >> pov [
 
 	^ Color black
