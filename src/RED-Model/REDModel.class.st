@@ -29,7 +29,7 @@ REDModel >> init [
 		neighbourhood: 8
 		closed: true.
 		
-	self theREDCells.
+	self theCells.
 		
 	self
 		createN: self class numberOfIndividuals
@@ -43,19 +43,25 @@ REDModel >> step: anObject [
 ]
 
 { #category : #'as yet unclassified' }
-REDModel >> theREDCells [
+REDModel >> theCells [
 
 	^ theCells ifNil: [ OrderedCollection new ].
 ]
 
+{ #category : #'as yet unclassified' }
+REDModel >> theCells: aCollection [
+
+	theCells := aCollection
+]
+
 { #category : #accessing }
-REDModel >> theREDIndividuals [
+REDModel >> theIndividuals [
 
 	^ theIndividuals ifNil: [ OrderedCollection new ]
 ]
 
 { #category : #accessing }
-REDModel >> theREDIndividuals: aCollection [
+REDModel >> theIndividuals: aCollection [
 
 	theIndividuals := aCollection
 ]

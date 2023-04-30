@@ -7,6 +7,12 @@ Class {
 	#category : #'RED-Model'
 }
 
+{ #category : #accessing }
+REDIndividual class >> entityName [
+
+	^ 'Individual'
+]
+
 { #category : #'as yet unclassified' }
 REDIndividual class >> initialInfectionProbability [
 	"The probability that an individual is initialized with infection"
