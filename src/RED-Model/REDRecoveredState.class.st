@@ -19,5 +19,9 @@ REDRecoveredState >> isRecovered [
 { #category : #'instance creation' }
 REDRecoveredState >> newState [
 
-	^ REDSusceptibleState forIndividual: individual
+	self incrementDayCount.
+	
+	dayCount >= individual immunityPeriod
+		ifTrue: [ REDSusceptibleState forIndividual: individual ]
+		ifFalse: [ self ]
 ]

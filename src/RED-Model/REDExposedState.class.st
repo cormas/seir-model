@@ -19,5 +19,9 @@ REDExposedState >> isExposed [
 { #category : #'instance creation' }
 REDExposedState >> newState [
 
-	^ REDInfectiousState forIndividual: individual
+	self incrementDayCount.
+	
+	dayCount >= individual incubationPeriod
+		ifTrue: [ REDInfectiousState forIndividual: individual ]
+		ifFalse: [ self ]
 ]

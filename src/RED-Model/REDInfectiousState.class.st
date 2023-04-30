@@ -19,7 +19,9 @@ REDInfectiousState >> isInfectious [
 { #category : #'instance creation' }
 REDInfectiousState >> newState [
 
-	^ (Random new next < 0.1)
+	self incrementDayCount.
+	
+	dayCount >= individual infectiousPeriod
 		ifTrue: [ REDRecoveredState forIndividual: individual ]
 		ifFalse: [ self ]
 ]

@@ -2,7 +2,10 @@ Class {
 	#name : #REDIndividual,
 	#superclass : #CMAgentLocation,
 	#instVars : [
-		'state'
+		'state',
+		'incubationPeriod',
+		'infectiousPeriod',
+		'immunityPeriod'
 	],
 	#category : #'RED-Model'
 }
@@ -20,6 +23,45 @@ REDIndividual class >> initialInfectionProbability [
 	^ 0.001
 ]
 
+{ #category : #'as yet unclassified' }
+REDIndividual class >> meanImmunityPeriod [
+
+	^ 365
+]
+
+{ #category : #'as yet unclassified' }
+REDIndividual class >> meanIncubationPeriod [
+
+	^ 3
+]
+
+{ #category : #'as yet unclassified' }
+REDIndividual class >> meanInfectiousPeriod [
+
+	^ 7
+]
+
+{ #category : #accessing }
+REDIndividual >> immunityPeriod [
+	"Personal immunity period"
+	
+	^ immunityPeriod
+]
+
+{ #category : #accessing }
+REDIndividual >> incubationPeriod [
+	"Personal incubation period"
+	
+	^ incubationPeriod
+]
+
+{ #category : #accessing }
+REDIndividual >> infectiousPeriod [
+	"Personal infectious period"
+	
+	^ infectiousPeriod
+]
+
 { #category : #initialization }
 REDIndividual >> initialize [
 
@@ -28,6 +70,10 @@ REDIndividual >> initialize [
 	state := Random new next > self class initialInfectionProbability
 		ifTrue: [ REDSusceptibleState forIndividual: self ]
 		ifFalse: [ REDInfectiousState forIndividual: self ].
+		
+	incubationPeriod := (PMExponentialDistribution scale: self class meanIncubationPeriod) random.
+	infectiousPeriod := (PMExponentialDistribution scale: self class meanInfectiousPeriod) random.
+	immunityPeriod := (PMExponentialDistribution scale: self class meanImmunityPeriod) random.
 ]
 
 { #category : #testing }
