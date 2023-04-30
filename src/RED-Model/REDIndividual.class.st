@@ -25,7 +25,7 @@ REDIndividual >> initialize [
 
 	super initialize.
 	
-	state := Random new > self class initialInfectionProbability
+	state := Random new next > self class initialInfectionProbability
 		ifTrue: [ REDSusceptibleState forIndividual: self ]
 		ifFalse: [ REDInfectiousState forIndividual: self ].
 ]
