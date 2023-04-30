@@ -21,7 +21,7 @@ REDExposedState >> newState [
 
 	self incrementDayCount.
 	
-	dayCount >= individual incubationPeriod
+	^ dayCount >= individual incubationPeriod
 		ifTrue: [ REDInfectiousState forIndividual: individual ]
 		ifFalse: [ self ]
 ]

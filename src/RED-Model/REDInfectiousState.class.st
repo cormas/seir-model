@@ -21,7 +21,7 @@ REDInfectiousState >> newState [
 
 	self incrementDayCount.
 	
-	dayCount >= individual infectiousPeriod
+	^ dayCount >= individual infectiousPeriod
 		ifTrue: [ REDRecoveredState forIndividual: individual ]
 		ifFalse: [ self ]
 ]

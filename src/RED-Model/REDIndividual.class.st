@@ -71,9 +71,14 @@ REDIndividual >> initialize [
 		ifTrue: [ REDSusceptibleState forIndividual: self ]
 		ifFalse: [ REDInfectiousState forIndividual: self ].
 		
-	incubationPeriod := (PMExponentialDistribution scale: self class meanIncubationPeriod) random.
-	infectiousPeriod := (PMExponentialDistribution scale: self class meanInfectiousPeriod) random.
-	immunityPeriod := (PMExponentialDistribution scale: self class meanImmunityPeriod) random.
+	incubationPeriod := (PMExponentialDistribution scale: self class meanIncubationPeriod)
+		random asInteger.
+		
+	infectiousPeriod := (PMExponentialDistribution scale: self class meanInfectiousPeriod)
+		random asInteger.
+		
+	immunityPeriod := (PMExponentialDistribution scale: self class meanImmunityPeriod)
+		random asInteger.
 ]
 
 { #category : #testing }
