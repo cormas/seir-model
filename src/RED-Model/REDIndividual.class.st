@@ -3,11 +3,12 @@ Class {
 	#superclass : #CMAgentLocation,
 	#instVars : [
 		'state',
+		'direction',
 		'incubationPeriod',
 		'infectiousPeriod',
 		'immunityPeriod'
 	],
-	#category : #'RED-Model'
+	#category : #'RED-Model-Core'
 }
 
 { #category : #accessing }
@@ -38,7 +39,7 @@ REDIndividual class >> meanIncubationPeriod [
 { #category : #'as yet unclassified' }
 REDIndividual class >> meanInfectiousPeriod [
 
-	^ 7
+	^ 14
 ]
 
 { #category : #accessing }
@@ -70,6 +71,8 @@ REDIndividual >> initialize [
 	state := Random new next > self class initialInfectionProbability
 		ifTrue: [ REDSusceptibleState forIndividual: self ]
 		ifFalse: [ REDInfectiousState forIndividual: self ].
+		
+	direction := REDDirection randomForIndividual: self.
 		
 	incubationPeriod := (PMExponentialDistribution scale: self class meanIncubationPeriod)
 		random asInteger.
@@ -108,7 +111,13 @@ REDIndividual >> isSusceptible [
 { #category : #accessing }
 REDIndividual >> move [
 
-	self randomWalkConstrainedBy: [ :cell | cell noOccupant ].
+	"self randomWalkConstrainedBy: [ :cell | cell noOccupant ]."
+	
+	direction := direction considerChangingDirection.
+	
+	direction canMoveForward
+		ifTrue: [ direction moveForward ]
+		ifFalse: [ direction := direction turnRandomly ].
 ]
 
 { #category : #'as yet unclassified' }

@@ -5,7 +5,7 @@ Class {
 		'theIndividuals',
 		'theCells'
 	],
-	#category : #'RED-Model'
+	#category : #'RED-Model-Core'
 }
 
 { #category : #'simulation settings' }
@@ -17,7 +17,7 @@ REDModel class >> defaultInit [
 { #category : #'as yet unclassified' }
 REDModel class >> numberOfIndividuals [
 
-	^ 1000
+	^ 1500
 ]
 
 { #category : #init }

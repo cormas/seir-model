@@ -1,7 +1,7 @@
 Class {
 	#name : #REDRecoveredState,
 	#superclass : #REDState,
-	#category : #'RED-Model'
+	#category : #'RED-Model-State'
 }
 
 { #category : #accessing }

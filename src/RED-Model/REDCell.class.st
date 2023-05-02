@@ -1,7 +1,7 @@
 Class {
 	#name : #REDCell,
 	#superclass : #CMSpatialEntityElement,
-	#category : #'RED-Model'
+	#category : #'RED-Model-Core'
 }
 
 { #category : #accessing }

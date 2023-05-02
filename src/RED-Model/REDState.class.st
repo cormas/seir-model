@@ -5,7 +5,7 @@ Class {
 		'individual',
 		'dayCount'
 	],
-	#category : #'RED-Model'
+	#category : #'RED-Model-State'
 }
 
 { #category : #'as yet unclassified' }

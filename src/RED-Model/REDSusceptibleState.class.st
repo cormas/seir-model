@@ -1,13 +1,13 @@
 Class {
 	#name : #REDSusceptibleState,
 	#superclass : #REDState,
-	#category : #'RED-Model'
+	#category : #'RED-Model-State'
 }
 
 { #category : #'as yet unclassified' }
 REDSusceptibleState class >> infectionRate [
 
-	^ 0.5
+	^ 1.5
 ]
 
 { #category : #accessing }
