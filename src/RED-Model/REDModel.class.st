@@ -8,6 +8,26 @@ Class {
 	#category : #'RED-Model-Core'
 }
 
+{ #category : #'- probes' }
+REDModel class >> colorOfProbe_numberOfExposed [
+  ^ Color yellow
+]
+
+{ #category : #'- probes' }
+REDModel class >> colorOfProbe_numberOfInfectious [
+  ^ Color red
+]
+
+{ #category : #'- probes' }
+REDModel class >> colorOfProbe_numberOfRecovered [
+  ^ Color green
+]
+
+{ #category : #'- probes' }
+REDModel class >> colorOfProbe_numberOfSusceptible [
+  ^ Color gray 
+]
+
 { #category : #'simulation settings' }
 REDModel class >> defaultInit [
 
@@ -34,6 +54,34 @@ REDModel >> init [
 	self
 		createN: self class numberOfIndividuals
 		randomlyLocatedAloneEntities: REDIndividual.
+]
+
+{ #category : #probes }
+REDModel >> numberOfExposed [
+
+	<probe>
+	^ (theIndividuals select: [ :each | each isExposed ]) size
+]
+
+{ #category : #probes }
+REDModel >> numberOfInfectious [
+
+	<probe>
+	^ (theIndividuals select: [ :each | each isInfectious ]) size
+]
+
+{ #category : #probes }
+REDModel >> numberOfRecovered [
+
+	<probe>
+	^ (theIndividuals select: [ :each | each isRecovered ]) size
+]
+
+{ #category : #probes }
+REDModel >> numberOfSusceptible [
+
+	<probe>
+	^ (theIndividuals select: [ :each | each isSusceptible ]) size
 ]
 
 { #category : #control }
