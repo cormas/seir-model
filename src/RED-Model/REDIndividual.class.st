@@ -18,10 +18,9 @@ REDIndividual class >> entityName [
 ]
 
 { #category : #'as yet unclassified' }
-REDIndividual class >> initialInfectionProbability [
-	"The probability that an individual is initialized with infection"
-	
-	^ 0.001
+REDIndividual class >> infectionRate [
+
+	^ 0.5
 ]
 
 { #category : #'as yet unclassified' }
@@ -39,6 +38,7 @@ REDIndividual class >> meanIncubationPeriod [
 { #category : #'as yet unclassified' }
 REDIndividual class >> meanInfectiousPeriod [
 
+	"^ 7"
 	^ 14
 ]
 
@@ -56,6 +56,18 @@ REDIndividual >> incubationPeriod [
 	^ incubationPeriod
 ]
 
+{ #category : #'as yet unclassified' }
+REDIndividual >> infect [
+	"Infect this individual"
+	state := REDInfectiousState forIndividual: self.
+]
+
+{ #category : #'as yet unclassified' }
+REDIndividual >> infectionProbability [
+	"The probability that a susceptible individual gets infected"
+	^ 1 - (-1 * self class infectionRate * self numberOfInfectiousNeighbours) exp
+]
+
 { #category : #accessing }
 REDIndividual >> infectiousPeriod [
 	"Personal infectious period"
@@ -68,10 +80,7 @@ REDIndividual >> initialize [
 
 	super initialize.
 	
-	state := Random new next > self class initialInfectionProbability
-		ifTrue: [ REDSusceptibleState forIndividual: self ]
-		ifFalse: [ REDInfectiousState forIndividual: self ].
-		
+	state := REDSusceptibleState forIndividual: self.
 	direction := REDDirection randomForIndividual: self.
 		
 	incubationPeriod := (PMExponentialDistribution scale: self class meanIncubationPeriod)

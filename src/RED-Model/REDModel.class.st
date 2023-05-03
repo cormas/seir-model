@@ -35,6 +35,13 @@ REDModel class >> defaultInit [
 ]
 
 { #category : #'as yet unclassified' }
+REDModel class >> initialInfectionProbability [
+	"The probability that an individual is initialized with infection"
+	
+	^ 0.001
+]
+
+{ #category : #'as yet unclassified' }
 REDModel class >> numberOfIndividuals [
 
 	^ 1500
@@ -49,11 +56,11 @@ REDModel >> init [
 		neighbourhood: 8
 		closed: true.
 		
-	self theCells do: [ :cell | cell ].
-		
 	self
 		createN: self class numberOfIndividuals
 		randomlyLocatedAloneEntities: REDIndividual.
+		
+	self spreadInitialInfection.
 ]
 
 { #category : #probes }
@@ -82,6 +89,41 @@ REDModel >> numberOfSusceptible [
 
 	<probe>
 	^ (theIndividuals select: [ :each | each isSusceptible ]) size
+]
+
+{ #category : #'as yet unclassified' }
+REDModel >> probesToCsv [
+
+	| probeData rows |
+	probeData := self data at: self class name.
+	
+	rows := (1 to: timeStep) asOrderedCollection collect: [ :i |
+		probeData collect: [ :value |
+			(value at: i) asString ] ].
+	
+	"Column names"
+	rows addFirst: probeData keys.
+	
+	^ String cr join: (rows collect: [ :each | ',' join: each ])
+]
+
+{ #category : #'as yet unclassified' }
+REDModel >> spreadInitialInfection [
+	"Infect several individuals before running the simulation"
+	| numberToInfect individualsToInfect |
+	numberToInfect := self class initialInfectionProbability * self class numberOfIndividuals.
+	
+	numberToInfect > theIndividuals size ifTrue: [ 
+		self error: 'Not enough individuals to spread the initial infection' ].
+	
+	individualsToInfect := Set new.
+	
+	[ individualsToInfect size < numberToInfect ] whileTrue: [ 
+		individualsToInfect add: self theIndividuals atRandom ].
+	
+	individualsToInfect do: [ :each | each infect ].
+	
+	
 ]
 
 { #category : #control }

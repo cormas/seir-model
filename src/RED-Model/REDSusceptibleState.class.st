@@ -4,12 +4,6 @@ Class {
 	#category : #'RED-Model-State'
 }
 
-{ #category : #'as yet unclassified' }
-REDSusceptibleState class >> infectionRate [
-
-	^ 1.5
-]
-
 { #category : #accessing }
 REDSusceptibleState >> color [
 
@@ -25,11 +19,7 @@ REDSusceptibleState >> isSusceptible [
 { #category : #'instance creation' }
 REDSusceptibleState >> newState [
 
-	| infectionProbability |
-	
-	infectionProbability := self class infectionRate * individual numberOfInfectiousNeighbours / 8.
-
-	^ Random new next < infectionProbability
+	^ Random new next < individual infectionProbability
 		ifTrue: [ REDExposedState forIndividual: individual ]
 		ifFalse: [ self ]
 ]
