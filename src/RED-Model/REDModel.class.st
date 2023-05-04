@@ -35,6 +35,12 @@ REDModel class >> defaultInit [
 ]
 
 { #category : #'as yet unclassified' }
+REDModel class >> gridDimensions [
+
+	^ 300 @ 300
+]
+
+{ #category : #'as yet unclassified' }
 REDModel class >> initialInfectionProbability [
 	"The probability that an individual is initialized with infection"
 	
@@ -51,8 +57,8 @@ REDModel class >> numberOfIndividuals [
 REDModel >> init [
 
 	self
-		createGridLines: 100
-		columns: 100
+		createGridLines: self class gridDimensions x
+		columns: self class gridDimensions y
 		neighbourhood: 8
 		closed: true.
 		
