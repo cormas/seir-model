@@ -31,9 +31,7 @@ REDDirection class >> randomForIndividual: anIndividual [
 { #category : #testing }
 REDDirection >> canMoveForward [ 
 
-	| target |
-	target := self targetCell.
-	^ target notNil "and: [ target noOccupant ]".
+	^ self targetCell notNil "and: [ self targetCell noOccupant ]".
 ]
 
 { #category : #'as yet unclassified' }

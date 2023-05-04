@@ -44,7 +44,7 @@ REDModel class >> initialInfectionProbability [
 { #category : #'as yet unclassified' }
 REDModel class >> numberOfIndividuals [
 
-	^ 1500
+	^ 1000
 ]
 
 { #category : #init }
@@ -58,7 +58,7 @@ REDModel >> init [
 		
 	self
 		createN: self class numberOfIndividuals
-		randomlyLocatedAloneEntities: REDIndividual.
+		randomlyLocatedEntities: REDIndividual.
 		
 	self spreadInitialInfection.
 ]

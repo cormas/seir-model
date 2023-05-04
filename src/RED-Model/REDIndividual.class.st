@@ -120,13 +120,23 @@ REDIndividual >> isSusceptible [
 { #category : #accessing }
 REDIndividual >> move [
 
-	"self randomWalkConstrainedBy: [ :cell | cell noOccupant ]."
-	
+	self moveRandomNeighbourhood.
+]
+
+{ #category : #accessing }
+REDIndividual >> moveRandomDirection [
+	"Move by choosing a direction and following it until we randomly choose to change it"
 	direction := direction considerChangingDirection.
 	
 	direction canMoveForward
 		ifTrue: [ direction moveForward ]
 		ifFalse: [ direction := direction turnRandomly ].
+]
+
+{ #category : #accessing }
+REDIndividual >> moveRandomNeighbourhood [
+	"Move by selecting a random cell from the neighbourhood at each step"
+	self randomWalk.
 ]
 
 { #category : #'as yet unclassified' }
