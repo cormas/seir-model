@@ -3,7 +3,6 @@ Class {
 	#superclass : #CMAgentLocation,
 	#instVars : [
 		'state',
-		'direction',
 		'incubationPeriod',
 		'infectiousPeriod',
 		'immunityPeriod'
@@ -81,7 +80,6 @@ REDIndividual >> initialize [
 	super initialize.
 	
 	state := REDSusceptibleState forIndividual: self.
-	direction := REDDirection randomForIndividual: self.
 		
 	incubationPeriod := (PMExponentialDistribution scale: self class meanIncubationPeriod)
 		random asInteger.
@@ -120,24 +118,7 @@ REDIndividual >> isSusceptible [
 { #category : #accessing }
 REDIndividual >> move [
 
-	"self moveRandomNeighbourhood."
 	self randomJump.
-]
-
-{ #category : #accessing }
-REDIndividual >> moveRandomDirection [
-	"Move by choosing a direction and following it until we randomly choose to change it"
-	direction := direction considerChangingDirection.
-	
-	direction canMoveForward
-		ifTrue: [ direction moveForward ]
-		ifFalse: [ direction := direction turnRandomly ].
-]
-
-{ #category : #accessing }
-REDIndividual >> moveRandomNeighbourhood [
-	"Move by selecting a random cell from the neighbourhood at each step"
-	self randomWalk.
 ]
 
 { #category : #'as yet unclassified' }
