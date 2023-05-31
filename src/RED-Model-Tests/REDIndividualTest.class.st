@@ -2,7 +2,8 @@ Class {
 	#name : #REDIndividualTest,
 	#superclass : #TestCase,
 	#instVars : [
-		'individual'
+		'individual',
+		'model'
 	],
 	#category : #'RED-Model-Tests'
 }
@@ -10,14 +11,17 @@ Class {
 { #category : #initialization }
 REDIndividualTest >> setUp [
 
-	| model |
 	super setUp.
 	
-	model := REDMockModel new.
-	"model initializeSpaceModel.
-	model perform: model class defaultInit."
+	model := REDModel new
+		gridDimensions: 4@4;
+		numberOfIndividuals: 0;
+		initSimulation;
+		yourself.
 	
 	individual := REDIndividual new.
+	individual moveTo: (model cellAt: 2 at: 2).
+	
 ]
 
 { #category : #tests }

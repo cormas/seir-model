@@ -3,7 +3,10 @@ Class {
 	#superclass : #CMAbstractModel,
 	#instVars : [
 		'theIndividuals',
-		'theCells'
+		'theCells',
+		'gridDimensions',
+		'numberOfIndividuals',
+		'initialInfectionProbability'
 	],
 	#category : #'RED-Model-Core'
 }
@@ -32,45 +35,93 @@ REDModel class >> colorOfProbe_numberOfSusceptible [
 	^ REDSusceptibleState new color
 ]
 
+{ #category : #'default parameters' }
+REDModel class >> defaultGridDimensions [
+
+	^ 100 @ 100
+]
+
 { #category : #'simulation settings' }
 REDModel class >> defaultInit [
 
 	^ #init
 ]
 
-{ #category : #'as yet unclassified' }
-REDModel class >> gridDimensions [
-
-	^ 100 @ 100
-]
-
-{ #category : #'as yet unclassified' }
-REDModel class >> initialInfectionProbability [
+{ #category : #'default parameters' }
+REDModel class >> defaultInitialInfectionProbability [
 	"The probability that an individual is initialized with infection"
 	
 	^ 0.001
 ]
 
-{ #category : #'as yet unclassified' }
-REDModel class >> numberOfIndividuals [
+{ #category : #'default parameters' }
+REDModel class >> defaultNumberOfIndividuals [
 
 	^ 1000
+]
+
+{ #category : #accessing }
+REDModel >> cellAt: rowNumber at: columnNumber [
+	"A helper method for testing.
+	Return the cell (i,j) from the rectangular spatial grid"
+	
+	| cells numberOfColumns |
+	
+	numberOfColumns := self spaceModel column.
+	cells := self spaceModel spatialEntitiesAt: self class cellClass name.
+	
+	^ cells at: ((rowNumber - 1) * numberOfColumns + columnNumber).
+	
+]
+
+{ #category : #accessing }
+REDModel >> gridDimensions [
+
+	^ gridDimensions
+]
+
+{ #category : #accessing }
+REDModel >> gridDimensions: anObject [
+
+	gridDimensions := anObject
 ]
 
 { #category : #init }
 REDModel >> init [
 
 	self
-		createGridLines: self class gridDimensions x
-		columns: self class gridDimensions y
+		createGridLines: gridDimensions x
+		columns: gridDimensions y
 		neighbourhood: 8
 		closed: true.
 		
 	self
-		createN: self class numberOfIndividuals
+		createN: numberOfIndividuals
 		randomlyLocatedEntities: REDIndividual.
 		
 	self spreadInitialInfection.
+]
+
+{ #category : #accessing }
+REDModel >> initialInfectionProbability [
+
+	^ initialInfectionProbability
+]
+
+{ #category : #accessing }
+REDModel >> initialInfectionProbability: anObject [
+
+	initialInfectionProbability := anObject
+]
+
+{ #category : #initialization }
+REDModel >> initialize [
+
+	super initialize.
+	
+	gridDimensions := self class defaultGridDimensions.
+	numberOfIndividuals := self class defaultNumberOfIndividuals.
+	initialInfectionProbability := self class defaultInitialInfectionProbability.
 ]
 
 { #category : #probes }
@@ -78,6 +129,18 @@ REDModel >> numberOfExposed [
 
 	<probe>
 	^ (theIndividuals select: [ :each | each isExposed ]) size
+]
+
+{ #category : #accessing }
+REDModel >> numberOfIndividuals [
+
+	^ numberOfIndividuals
+]
+
+{ #category : #accessing }
+REDModel >> numberOfIndividuals: anObject [
+
+	numberOfIndividuals := anObject
 ]
 
 { #category : #probes }
@@ -101,7 +164,7 @@ REDModel >> numberOfSusceptible [
 	^ (theIndividuals select: [ :each | each isSusceptible ]) size
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'export CSV' }
 REDModel >> probesToCsv [
 
 	| probeData rows |
@@ -117,11 +180,11 @@ REDModel >> probesToCsv [
 	^ String cr join: (rows collect: [ :each | ',' join: each ])
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #init }
 REDModel >> spreadInitialInfection [
 	"Infect several individuals before running the simulation"
 	| numberToInfect individualsToInfect |
-	numberToInfect := self class initialInfectionProbability * self class numberOfIndividuals.
+	numberToInfect := initialInfectionProbability * numberOfIndividuals.
 	
 	numberToInfect > theIndividuals size ifTrue: [ 
 		self error: 'Not enough individuals to spread the initial infection' ].
@@ -142,13 +205,13 @@ REDModel >> step: anObject [
 	self askRandom: REDIndividual toDo: #step
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 REDModel >> theCells [
 
 	^ theCells ifNil: [ theCells := OrderedCollection new ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 REDModel >> theCells: aCollection [
 
 	theCells := aCollection
