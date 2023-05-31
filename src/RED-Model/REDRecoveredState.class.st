@@ -7,7 +7,7 @@ Class {
 { #category : #accessing }
 REDRecoveredState >> color [
 
-	^ Color green
+	^ Color r: 0.19941348973607037 g: 0.6265884652981427 b: 0.17204301075268819 alpha: 1.0
 ]
 
 { #category : #testing }

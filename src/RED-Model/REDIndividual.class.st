@@ -89,7 +89,7 @@ REDIndividual >> initialize [
 	infectiousPeriod := (PMExponentialDistribution scale: self class meanInfectiousPeriod)
 		random asInteger.
 		
-	immunityPeriod := (PMExponentialDistribution scale: self class meanImmunityPeriod)
+	immunityPeriod := (PMExponentialDistribution scale: REDIndividual meanImmunityPeriod)
 		random asInteger.
 ]
 
@@ -120,7 +120,8 @@ REDIndividual >> isSusceptible [
 { #category : #accessing }
 REDIndividual >> move [
 
-	self moveRandomNeighbourhood.
+	"self moveRandomNeighbourhood."
+	self randomJump.
 ]
 
 { #category : #accessing }

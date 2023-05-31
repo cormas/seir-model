@@ -10,22 +10,22 @@ Class {
 
 { #category : #'- probes' }
 REDModel class >> colorOfProbe_numberOfExposed [
-  ^ Color yellow
+  ^ REDExposedState new color
 ]
 
 { #category : #'- probes' }
 REDModel class >> colorOfProbe_numberOfInfectious [
-  ^ Color red
+  ^ REDInfectiousState new color
 ]
 
 { #category : #'- probes' }
 REDModel class >> colorOfProbe_numberOfRecovered [
-  ^ Color green
+  ^ REDRecoveredState new color
 ]
 
 { #category : #'- probes' }
 REDModel class >> colorOfProbe_numberOfSusceptible [
-  ^ Color gray 
+  ^ REDSusceptibleState new color
 ]
 
 { #category : #'simulation settings' }
@@ -37,7 +37,7 @@ REDModel class >> defaultInit [
 { #category : #'as yet unclassified' }
 REDModel class >> gridDimensions [
 
-	^ 300 @ 300
+	^ 100 @ 100
 ]
 
 { #category : #'as yet unclassified' }
