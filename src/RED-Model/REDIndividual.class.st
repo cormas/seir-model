@@ -37,8 +37,7 @@ REDIndividual class >> meanIncubationPeriod [
 { #category : #'as yet unclassified' }
 REDIndividual class >> meanInfectiousPeriod [
 
-	"^ 7"
-	^ 14
+	^ 7
 ]
 
 { #category : #accessing }
@@ -49,10 +48,24 @@ REDIndividual >> immunityPeriod [
 ]
 
 { #category : #accessing }
+REDIndividual >> immunityPeriod: anInteger [
+	"Personal immunity period"
+	
+	immunityPeriod := anInteger
+]
+
+{ #category : #accessing }
 REDIndividual >> incubationPeriod [
 	"Personal incubation period"
 	
 	^ incubationPeriod
+]
+
+{ #category : #accessing }
+REDIndividual >> incubationPeriod: anInteger [
+	"Personal incubation period"
+	
+	incubationPeriod := anInteger
 ]
 
 { #category : #'as yet unclassified' }
@@ -72,6 +85,13 @@ REDIndividual >> infectiousPeriod [
 	"Personal infectious period"
 	
 	^ infectiousPeriod
+]
+
+{ #category : #accessing }
+REDIndividual >> infectiousPeriod: anInteger [
+	"Personal infectious period"
+	
+	infectiousPeriod := anInteger
 ]
 
 { #category : #initialization }

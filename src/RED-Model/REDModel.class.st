@@ -39,7 +39,7 @@ REDModel class >> colorOfProbe_numberOfSusceptible [
 { #category : #'default parameters' }
 REDModel class >> defaultGridDimensions [
 
-	^ 100 @ 100
+	^ 300 @ 300
 ]
 
 { #category : #'simulation settings' }
@@ -58,7 +58,7 @@ REDModel class >> defaultInitialInfectionProbability [
 { #category : #'default parameters' }
 REDModel class >> defaultNumberOfIndividuals [
 
-	^ 1000
+	^ 20000
 ]
 
 { #category : #'default parameters' }

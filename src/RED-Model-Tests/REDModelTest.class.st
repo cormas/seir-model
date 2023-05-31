@@ -10,13 +10,12 @@ Class {
 { #category : #initialization }
 REDModelTest >> setUp [
 
+	| fixture |
 	super setUp.
 	
-	model := REDModel new
-		gridDimensions: 4@4;
-		numberOfIndividuals: 0;
-		initSimulation;
-		yourself.
+	fixture := REDModelFixture new.
+	model := fixture model.
+	
 ]
 
 { #category : #tests }

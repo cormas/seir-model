@@ -19,7 +19,10 @@ REDSusceptibleState >> isSusceptible [
 { #category : #'instance creation' }
 REDSusceptibleState >> newState [
 
-	^ Random new next < individual infectionProbability
+	| rand |
+	rand := individual cormasModel randomNumberGenerator. 
+
+	^ rand floatValue < individual infectionProbability
 		ifTrue: [ REDExposedState forIndividual: individual ]
 		ifFalse: [ self ]
 ]

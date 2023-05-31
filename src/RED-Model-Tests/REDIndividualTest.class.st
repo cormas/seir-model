@@ -11,16 +11,12 @@ Class {
 { #category : #initialization }
 REDIndividualTest >> setUp [
 
+	| fixture |
 	super setUp.
 	
-	model := REDModel new
-		gridDimensions: 4@4;
-		numberOfIndividuals: 0;
-		initSimulation;
-		yourself.
-	
-	individual := REDIndividual new.
-	individual moveTo: (model cellAt: 2 at: 2).
+	fixture := REDModelFixture new.
+	model := fixture model.
+	individual := fixture individual.
 	
 ]
 
@@ -36,6 +32,13 @@ REDIndividualTest >> testInfectionProbability [
 
 	self assert: individual infectionProbability >= 0.
 	self assert: individual infectionProbability <= 1.
+]
+
+{ #category : #tests }
+REDIndividualTest >> testInfectionProbabilityValue [
+
+	"1 - (-1 * 0.5 * 1) exp = 0.3934693402873666"
+	self assert: individual infectionProbability closeTo: 0.3934693402873666
 ]
 
 { #category : #tests }

@@ -23,10 +23,16 @@ REDStateTest class >> shouldInheritSelectors [
 { #category : #initialization }
 REDStateTest >> setUp [
 	
+	| fixture |
 	super setUp.
 	
-	individual := REDIndividual new.
+	fixture := REDModelFixture new.
+	individual := fixture individual.
 	state := self stateClass forIndividual: individual.
+	
+	individual incubationPeriod: 3.
+	individual infectiousPeriod: 40.
+	individual immunityPeriod: 100.
 ]
 
 { #category : #accessing }
