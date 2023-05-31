@@ -6,7 +6,8 @@ Class {
 		'theCells',
 		'gridDimensions',
 		'numberOfIndividuals',
-		'initialInfectionProbability'
+		'initialInfectionProbability',
+		'randomNumberGenerator'
 	],
 	#category : #'RED-Model-Core'
 }
@@ -58,6 +59,12 @@ REDModel class >> defaultInitialInfectionProbability [
 REDModel class >> defaultNumberOfIndividuals [
 
 	^ 1000
+]
+
+{ #category : #'default parameters' }
+REDModel class >> defaultRandomNumberGenerator [
+
+	^ PMMitchellMooreGenerator new
 ]
 
 { #category : #accessing }
@@ -122,6 +129,7 @@ REDModel >> initialize [
 	gridDimensions := self class defaultGridDimensions.
 	numberOfIndividuals := self class defaultNumberOfIndividuals.
 	initialInfectionProbability := self class defaultInitialInfectionProbability.
+	randomNumberGenerator := self class defaultRandomNumberGenerator.
 ]
 
 { #category : #probes }
@@ -180,7 +188,25 @@ REDModel >> probesToCsv [
 	^ String cr join: (rows collect: [ :each | ',' join: each ])
 ]
 
-{ #category : #init }
+{ #category : #accessing }
+REDModel >> randomNumberGenerator [
+
+	^ randomNumberGenerator
+]
+
+{ #category : #accessing }
+REDModel >> randomNumberGenerator: anObject [
+
+	randomNumberGenerator := anObject
+]
+
+{ #category : #'utilities - random' }
+REDModel >> randomSeed: aNumber [
+
+	randomNumberGenerator := PMMitchellMooreGenerator seed: aNumber.
+]
+
+{ #category : #initialization }
 REDModel >> spreadInitialInfection [
 	"Infect several individuals before running the simulation"
 	| numberToInfect individualsToInfect |
