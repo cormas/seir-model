@@ -10,22 +10,26 @@ Class {
 
 { #category : #'- probes' }
 REDModel class >> colorOfProbe_numberOfExposed [
-  ^ REDExposedState new color
+	<ignoreForCoverage>
+	^ REDExposedState new color
 ]
 
 { #category : #'- probes' }
 REDModel class >> colorOfProbe_numberOfInfectious [
-  ^ REDInfectiousState new color
+	<ignoreForCoverage>
+	^ REDInfectiousState new color
 ]
 
 { #category : #'- probes' }
 REDModel class >> colorOfProbe_numberOfRecovered [
-  ^ REDRecoveredState new color
+	<ignoreForCoverage>
+	^ REDRecoveredState new color
 ]
 
 { #category : #'- probes' }
 REDModel class >> colorOfProbe_numberOfSusceptible [
-  ^ REDSusceptibleState new color
+	<ignoreForCoverage>
+	^ REDSusceptibleState new color
 ]
 
 { #category : #'simulation settings' }
