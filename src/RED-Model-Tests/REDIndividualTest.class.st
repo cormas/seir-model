@@ -3,7 +3,8 @@ Class {
 	#superclass : #TestCase,
 	#instVars : [
 		'individual',
-		'model'
+		'model',
+		'infectedIndividual'
 	],
 	#category : #'RED-Model-Tests'
 }
@@ -17,6 +18,7 @@ REDIndividualTest >> setUp [
 	fixture := REDModelFixture new.
 	model := fixture model.
 	individual := fixture individual.
+	infectedIndividual := fixture infectedIndividual.
 	
 ]
 
@@ -63,6 +65,22 @@ REDIndividualTest >> testIsRecovered [
 REDIndividualTest >> testIsSusceptible [
 
 	self assert: individual isSusceptible
+]
+
+{ #category : #tests }
+REDIndividualTest >> testNumberOfInfectiousNeighbours [
+
+	self assert: individual numberOfInfectiousNeighbours equals: 1
+]
+
+{ #category : #tests }
+REDIndividualTest >> testNumberOfInfectiousNeighboursSameCell [
+	"Create a new individual at the same cell as the only infected individual and check if the number of infectious neighbours is 1"
+	| newIndividual |
+	newIndividual := model newEntity: REDIndividual.
+	newIndividual moveTo: infectedIndividual patch.
+
+	self assert: newIndividual numberOfInfectiousNeighbours equals: 1
 ]
 
 { #category : #tests }

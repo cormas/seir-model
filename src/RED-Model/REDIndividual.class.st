@@ -166,7 +166,8 @@ REDIndividual >> move [
 { #category : #'as yet unclassified' }
 REDIndividual >> numberOfInfectiousNeighbours [
 
-	^ (self neighbouringSimilarAgents select: [ :each | each isInfectious ]) size
+	^ ((self neighbouringSimilarAgents, self colocatedSimilarAgents)
+		select: [ :each | each isInfectious ]) size
 ]
 
 { #category : #pov }
