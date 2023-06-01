@@ -4,12 +4,12 @@ SmalltalkCISpec {
       #baseline : 'REDModel',
       #directory : 'src',
       #onWarningLog: true,
-      #onConflict : #useIncoming,
-      #load : [ 'default' ],
-      #platforms : [ #pharo ]
+      #onConflict : #useLoaded
     }
   ],
   #testing : {
-    #categories : [ 'RED-Model*' ]
+    #coverage : {
+      #packages : [ 'RED-Model*' ]
+    }
   }
 }
