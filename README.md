@@ -9,7 +9,9 @@ An agent-based model implemented in Cormas for RED reproducibility study
 
 ## How to install it?
 
-To install the project, go to the Playground (Ctrl+OW) in your [Pharo](https://pharo.org/) image and execute the following Metacello script (select it and press Do-it button or Ctrl+D):
+To install the image, you must first get a latest version of Cormas platform (in this experiment, we used the version [8735b99](https://github.com/cormas/cormas/tree/8735b9931b98a06913b4ecf2f6214e89bbe43a27) but more recent versions should also work).
+To do that, follow the instructions at [Cormas GitHub](https://github.com/cormas/cormas/blob/master/README.md).
+Theno open the Playground (Ctrl+OW) in your image and execute the following Metacello script (select it and press Do-it button or Ctrl+D):
 
 ```Smalltalk
 Metacello new
@@ -17,6 +19,8 @@ Metacello new
   repository: 'github://olekscode/REDEpidemiologicalModel/src';
   load.
 ```
+
+To check if installation is correct, go to the `RED-Model-Tests` package and run all the tests.
 
 ## How to depend on it?
 
