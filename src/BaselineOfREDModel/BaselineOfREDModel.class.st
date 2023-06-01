@@ -9,12 +9,21 @@ BaselineOfREDModel >> baseline: spec [
 
 	<baseline>
 	spec for: #common do: [ "Dependencies"
+		self loadCormas: spec.
 		self loadPolyMath: spec.
 
 		"Packages"
 		spec
 			package: 'RED-Model' with: [ spec requires: #(PolyMath) ];
 			package: 'RED-Model-Tests' with: [ spec requires: #( 'RED-Model' ) ] ]
+]
+
+{ #category : #'as yet unclassified' }
+BaselineOfREDModel >> loadCormas: spec [
+
+	spec
+		baseline: 'Cormas'
+		with: [ spec repository: 'github://cormas/cormas/' ]
 ]
 
 { #category : #'as yet unclassified' }
