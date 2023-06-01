@@ -69,7 +69,7 @@ REDModel class >> defaultRandomNumberGenerator [
 
 { #category : #examples }
 REDModel class >> run30Replications [
-
+	"Run 30 replications of simulation and save data to the CSV files"
 	<example>
 	| model file |
 
