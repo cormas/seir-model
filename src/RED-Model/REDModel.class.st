@@ -67,6 +67,28 @@ REDModel class >> defaultRandomNumberGenerator [
 	^ PMMitchellMooreGenerator new
 ]
 
+{ #category : #examples }
+REDModel class >> run30Replications [
+
+	<example>
+	| model file |
+
+	(1 to: 30) do: [ :i |
+		model := self new.
+		model initSimulation.
+		
+		(1 to: 730)
+			do: [ :day | model runStep ]
+			displayingProgress: [ :day | 'Day ', day asString ].
+	
+		file := ('data/replication', i asString, '.csv') asFileReference.
+
+		file writeStreamDo: [ :stream |
+			stream nextPutAll: model probesToCsv ].
+	
+	] displayingProgress: [ :i | 'Running replication number ', i asString ].
+]
+
 { #category : #accessing }
 REDModel >> cellAt: rowNumber at: columnNumber [
 	"A helper method for testing.
