@@ -175,15 +175,17 @@ REDModel >> numberOfSusceptible [
 { #category : #'export CSV' }
 REDModel >> probesToCsv [
 
-	| probeData rows |
+	| probeData rows row |
 	probeData := self data at: self class name.
 	
 	rows := (1 to: timeStep) asOrderedCollection collect: [ :i |
-		probeData collect: [ :value |
-			(value at: i) asString ] ].
+		row := #(numberOfSusceptible numberOfExposed numberOfInfectious numberOfRecovered)
+			collect: [ :key | ((probeData at: key) at: i) asString ].
+			
+		row copyWithFirst: i asString ].
 	
 	"Column names"
-	rows addFirst: probeData keys.
+	rows addFirst: #(TIME s e i r).
 	
 	^ String cr join: (rows collect: [ :each | ',' join: each ])
 ]
