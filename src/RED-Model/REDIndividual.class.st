@@ -1,6 +1,6 @@
 Class {
 	#name : #REDIndividual,
-	#superclass : #CMAgentLocation,
+	#superclass : #CMLocatedAgent,
 	#instVars : [
 		'state',
 		'incubationPeriod',
