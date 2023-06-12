@@ -61,6 +61,12 @@ REDModel class >> defaultNumberOfIndividuals [
 	^ 20000
 ]
 
+{ #category : #'simulation settings' }
+REDModel class >> defaultProbes [
+
+	^ self probes
+]
+
 { #category : #'default parameters' }
 REDModel class >> defaultRandomNumberGenerator [
 
