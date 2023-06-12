@@ -95,6 +95,18 @@ REDModel class >> run30Replications [
 	] displayingProgress: [ :i | 'Running replication number ', i asString ].
 ]
 
+{ #category : #'default parameters' }
+REDModel class >> smallGridDimensions [
+
+	^ 100 @ 100
+]
+
+{ #category : #'default parameters' }
+REDModel class >> smallNumberOfIndividuals [
+
+	^ 1000
+]
+
 { #category : #accessing }
 REDModel >> cellAt: rowNumber at: columnNumber [
 	"A helper method for testing.
@@ -135,6 +147,15 @@ REDModel >> init [
 		randomlyLocatedEntities: REDIndividual.
 		
 	self spreadInitialInfection.
+]
+
+{ #category : #init }
+REDModel >> initSmall [
+
+	self numberOfIndividuals: self class smallNumberOfIndividuals.
+	self gridDimensions: self class smallGridDimensions.
+
+	self init.
 ]
 
 { #category : #accessing }
