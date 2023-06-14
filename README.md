@@ -1,4 +1,4 @@
-# REDEpidemiologicalModel
+# SEIR Model
 
 [![CI](https://github.com/cormas/seir-model/actions/workflows/test.yml/badge.svg)](https://github.com/cormas/seir-model/actions/workflows/test.yml)
 [![Coverage Status](https://coveralls.io/repos/github/cormas/seir-model/badge.svg?branch=master)](https://coveralls.io/github/cormas/seir-model?branch=master)
@@ -9,7 +9,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/cormas/seir-model/master/LICENSE)
 
 
-An agent-based model implemented in Cormas for RED reproducibility study
+A simple epidemiological model in which individuals are transitioning between the four states: susceptible (S) -> exposed (E) -> infectious (I) -> recovered (R).
 
 ## How to install it?
 
