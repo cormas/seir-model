@@ -9,7 +9,9 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/cormas/seir-model/master/LICENSE)
 
 
-A simple epidemiological model in which individuals are transitioning between the four states: susceptible (S) -> exposed (E) -> infectious (I) -> recovered (R).
+A simple epidemiological model in which individuals are transitioning between the four states:
+
+**susceptible (S)** → **exposed (E)** → **infectious (I)** → **recovered (R)**.
 
 ## How to install it?
 
