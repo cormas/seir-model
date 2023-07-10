@@ -21,7 +21,7 @@ Then open the Playground (Ctrl+OW) in your image and execute the following Metac
 ```Smalltalk
 Metacello new
   baseline: 'REDModel';
-  repository: 'github://olekscode/REDEpidemiologicalModel/src';
+  repository: 'github://cormas/REDEpidemiologicalModel/src';
   load.
 ```
 
