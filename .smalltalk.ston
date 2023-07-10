@@ -1,7 +1,7 @@
 SmalltalkCISpec {
   #loading : [
     SCIMetacelloLoadSpec {
-      #baseline : 'REDModel',
+      #baseline : 'SEIRModel',
       #directory : 'src',
       #onWarningLog: true,
       #onConflict : #useLoaded
@@ -9,7 +9,7 @@ SmalltalkCISpec {
   ],
   #testing : {
     #coverage : {
-      #packages : [ 'RED-Model*' ]
+      #packages : [ 'SEIR-Model*' ]
     }
   }
 }
