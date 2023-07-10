@@ -20,8 +20,8 @@ Then open the Playground (Ctrl+OW) in your image and execute the following Metac
 
 ```Smalltalk
 Metacello new
-  baseline: 'REDModel';
-  repository: 'github://cormas/REDEpidemiologicalModel/src';
+  baseline: 'SEIRModel';
+  repository: 'github://cormas/seir-model/src';
   load.
 ```
 
