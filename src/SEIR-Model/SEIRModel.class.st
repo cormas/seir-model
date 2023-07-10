@@ -74,6 +74,30 @@ SEIRModel class >> defaultRandomNumberGenerator [
 ]
 
 { #category : #examples }
+SEIRModel class >> run2Replications [
+	"Run 2 replications of simulation and save data to the CSV files"
+	<example>
+	| model dataPath file |
+	
+	dataPath := 'data' asFileReference ensureCreateDirectory.
+
+	(1 to: 2) do: [ :i |
+		model := self new.
+		model initializeSimulation.
+		
+		(1 to: 730)
+			do: [ :day | model runStep ]
+			displayingProgress: [ :day | 'Day ', day asString ].
+	
+		file := dataPath / ('replication', i asString, '.csv').
+
+		file writeStreamDo: [ :stream |
+			stream nextPutAll: model probesToCsv ].
+	
+	] displayingProgress: [ :i | 'Running replication number ', i asString ].
+]
+
+{ #category : #examples }
 SEIRModel class >> run30Replications [
 	"Run 30 replications of simulation and save data to the CSV files"
 	<example>
@@ -81,7 +105,7 @@ SEIRModel class >> run30Replications [
 
 	(1 to: 30) do: [ :i |
 		model := self new.
-		model initSimulation.
+		model initializeSimulation.
 		
 		(1 to: 730)
 			do: [ :day | model runStep ]
