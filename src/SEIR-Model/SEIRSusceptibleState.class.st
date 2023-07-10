@@ -1,28 +1,28 @@
 Class {
-	#name : #REDSusceptibleState,
-	#superclass : #REDState,
-	#category : #'RED-Model-State'
+	#name : #SEIRSusceptibleState,
+	#superclass : #SEIRState,
+	#category : #'SEIR-Model-State'
 }
 
 { #category : #accessing }
-REDSusceptibleState >> color [
+SEIRSusceptibleState >> color [
 
 	^ Color gray
 ]
 
 { #category : #testing }
-REDSusceptibleState >> isSusceptible [
+SEIRSusceptibleState >> isSusceptible [
 
 	^ true
 ]
 
 { #category : #'instance creation' }
-REDSusceptibleState >> newState [
+SEIRSusceptibleState >> newState [
 
 	| rand |
 	rand := individual cormasModel randomNumberGenerator. 
 
 	^ rand floatValue < individual infectionProbability
-		ifTrue: [ REDExposedState forIndividual: individual ]
+		ifTrue: [ SEIRExposedState forIndividual: individual ]
 		ifFalse: [ self ]
 ]

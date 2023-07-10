@@ -1,48 +1,48 @@
 Class {
-	#name : #REDModelFixture,
+	#name : #SEIRModelFixture,
 	#superclass : #Object,
 	#instVars : [
 		'model',
 		'individual',
 		'infectedIndividual'
 	],
-	#category : #'RED-Model-Tests'
+	#category : #'SEIR-Model-Tests'
 }
 
 { #category : #accessing }
-REDModelFixture >> individual [
+SEIRModelFixture >> individual [
 
 	^ individual
 ]
 
 { #category : #accessing }
-REDModelFixture >> infectedIndividual [
+SEIRModelFixture >> infectedIndividual [
 
 	^ infectedIndividual
 ]
 
 { #category : #initialization }
-REDModelFixture >> initialize [
+SEIRModelFixture >> initialize [
 
 	super initialize.
 	
-	model := REDModel new
+	model := SEIRModel new
 		gridDimensions: 4@4;
 		numberOfIndividuals: 0;
 		randomSeed: 42;
 		initSimulation;
 		yourself.
 		
-	individual := model newEntity: REDIndividual.
+	individual := model newEntity: SEIRIndividual.
 	individual moveTo: (model cellAt: 2 at: 3).
 	
-	infectedIndividual := model newEntity: REDIndividual.
+	infectedIndividual := model newEntity: SEIRIndividual.
 	infectedIndividual infect.
 	infectedIndividual moveTo: (model cellAt: 1 at: 2).
 ]
 
 { #category : #accessing }
-REDModelFixture >> model [
+SEIRModelFixture >> model [
 
 	^ model
 ]

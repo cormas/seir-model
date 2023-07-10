@@ -1,22 +1,22 @@
 Class {
-	#name : #REDCellTest,
+	#name : #SEIRCellTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'individual',
 		'cell'
 	],
-	#category : #'RED-Model-Tests'
+	#category : #'SEIR-Model-Tests'
 }
 
 { #category : #initialization }
-REDCellTest >> setUp [
+SEIRCellTest >> setUp [
 
 	super setUp.
-	cell := REDCell new.
+	cell := SEIRCell new.
 ]
 
 { #category : #tests }
-REDCellTest >> testPov [ 
+SEIRCellTest >> testPov [ 
 	
 	self assert: (cell pov isKindOf: Color)
 ]

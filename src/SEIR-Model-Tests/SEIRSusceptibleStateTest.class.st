@@ -1,17 +1,17 @@
 Class {
-	#name : #REDSusceptibleStateTest,
-	#superclass : #REDStateTest,
-	#category : #'RED-Model-Tests'
+	#name : #SEIRSusceptibleStateTest,
+	#superclass : #SEIRStateTest,
+	#category : #'SEIR-Model-Tests'
 }
 
 { #category : #initialization }
-REDSusceptibleStateTest >> stateClass [
+SEIRSusceptibleStateTest >> stateClass [
 
-	^ REDSusceptibleState
+	^ SEIRSusceptibleState
 ]
 
 { #category : #'as yet unclassified' }
-REDSusceptibleStateTest >> testIsSusceptible [
+SEIRSusceptibleStateTest >> testIsSusceptible [
 
 	"With a fixed random seed 42, the generated sequence of random numbers are
 	#(0.8193728517100656 0.4832677010338043 0.8838065384920546 0.5448508591225051 0.8591746499733108 0.9181291652326767 0.9086380098559519 0.9643509794648097 0.39743731950979955 0.23500392111465765)
@@ -27,7 +27,7 @@ REDSusceptibleStateTest >> testIsSusceptible [
 ]
 
 { #category : #tests }
-REDSusceptibleStateTest >> testNewState [
+SEIRSusceptibleStateTest >> testNewState [
 
 	"With a fixed random seed 42, the generated sequence of random numbers are
 	#(0.8193728517100656 0.4832677010338043 0.8838065384920546 0.5448508591225051 0.8591746499733108 0.9181291652326767 0.9086380098559519 0.9643509794648097 0.39743731950979955 0.23500392111465765)

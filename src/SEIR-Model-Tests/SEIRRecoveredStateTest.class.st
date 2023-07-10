@@ -1,23 +1,23 @@
 Class {
-	#name : #REDRecoveredStateTest,
-	#superclass : #REDStateTest,
-	#category : #'RED-Model-Tests'
+	#name : #SEIRRecoveredStateTest,
+	#superclass : #SEIRStateTest,
+	#category : #'SEIR-Model-Tests'
 }
 
 { #category : #initialization }
-REDRecoveredStateTest >> stateClass [
+SEIRRecoveredStateTest >> stateClass [
 
-	^ REDRecoveredState
+	^ SEIRRecoveredState
 ]
 
 { #category : #'as yet unclassified' }
-REDRecoveredStateTest >> testIsRecovered [
+SEIRRecoveredStateTest >> testIsRecovered [
 
 	self assert: self state isRecovered
 ]
 
 { #category : #tests }
-REDRecoveredStateTest >> testNewState [
+SEIRRecoveredStateTest >> testNewState [
 
 	(individual immunityPeriod - 1) timesRepeat: [ 
 		self assert: state newState isRecovered ].

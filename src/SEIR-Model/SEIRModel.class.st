@@ -1,5 +1,5 @@
 Class {
-	#name : #REDModel,
+	#name : #SEIRModel,
 	#superclass : #CMAbstractModel,
 	#instVars : [
 		'theIndividuals',
@@ -9,72 +9,72 @@ Class {
 		'initialInfectionProbability',
 		'randomNumberGenerator'
 	],
-	#category : #'RED-Model-Core'
+	#category : #'SEIR-Model-Core'
 }
 
 { #category : #'- probes' }
-REDModel class >> colorOfProbe_numberOfExposed [
+SEIRModel class >> colorOfProbe_numberOfExposed [
 	<ignoreForCoverage>
-	^ REDExposedState new color
+	^ SEIRExposedState new color
 ]
 
 { #category : #'- probes' }
-REDModel class >> colorOfProbe_numberOfInfectious [
+SEIRModel class >> colorOfProbe_numberOfInfectious [
 	<ignoreForCoverage>
-	^ REDInfectiousState new color
+	^ SEIRInfectiousState new color
 ]
 
 { #category : #'- probes' }
-REDModel class >> colorOfProbe_numberOfRecovered [
+SEIRModel class >> colorOfProbe_numberOfRecovered [
 	<ignoreForCoverage>
-	^ REDRecoveredState new color
+	^ SEIRRecoveredState new color
 ]
 
 { #category : #'- probes' }
-REDModel class >> colorOfProbe_numberOfSusceptible [
+SEIRModel class >> colorOfProbe_numberOfSusceptible [
 	<ignoreForCoverage>
-	^ REDSusceptibleState new color
+	^ SEIRSusceptibleState new color
 ]
 
 { #category : #'default parameters' }
-REDModel class >> defaultGridDimensions [
+SEIRModel class >> defaultGridDimensions [
 
 	^ 300 @ 300
 ]
 
 { #category : #'simulation settings' }
-REDModel class >> defaultInit [
+SEIRModel class >> defaultInit [
 
 	^ #init
 ]
 
 { #category : #'default parameters' }
-REDModel class >> defaultInitialInfectionProbability [
+SEIRModel class >> defaultInitialInfectionProbability [
 	"The probability that an individual is initialized with infection"
 	
 	^ 0.001
 ]
 
 { #category : #'default parameters' }
-REDModel class >> defaultNumberOfIndividuals [
+SEIRModel class >> defaultNumberOfIndividuals [
 
 	^ 20000
 ]
 
 { #category : #'simulation settings' }
-REDModel class >> defaultProbes [
+SEIRModel class >> defaultProbes [
 
 	^ self probes
 ]
 
 { #category : #'default parameters' }
-REDModel class >> defaultRandomNumberGenerator [
+SEIRModel class >> defaultRandomNumberGenerator [
 
 	^ PMMitchellMooreGenerator new
 ]
 
 { #category : #examples }
-REDModel class >> run30Replications [
+SEIRModel class >> run30Replications [
 	"Run 30 replications of simulation and save data to the CSV files"
 	<example>
 	| model file |
@@ -96,19 +96,19 @@ REDModel class >> run30Replications [
 ]
 
 { #category : #'default parameters' }
-REDModel class >> smallGridDimensions [
+SEIRModel class >> smallGridDimensions [
 
 	^ 100 @ 100
 ]
 
 { #category : #'default parameters' }
-REDModel class >> smallNumberOfIndividuals [
+SEIRModel class >> smallNumberOfIndividuals [
 
 	^ 1000
 ]
 
 { #category : #accessing }
-REDModel >> cellAt: rowNumber at: columnNumber [
+SEIRModel >> cellAt: rowNumber at: columnNumber [
 	"A helper method for testing.
 	Return the cell (i,j) from the rectangular spatial grid"
 	
@@ -122,19 +122,19 @@ REDModel >> cellAt: rowNumber at: columnNumber [
 ]
 
 { #category : #accessing }
-REDModel >> gridDimensions [
+SEIRModel >> gridDimensions [
 
 	^ gridDimensions
 ]
 
 { #category : #accessing }
-REDModel >> gridDimensions: anObject [
+SEIRModel >> gridDimensions: anObject [
 
 	gridDimensions := anObject
 ]
 
 { #category : #init }
-REDModel >> init [
+SEIRModel >> init [
 
 	self
 		createGridLines: gridDimensions x
@@ -144,13 +144,13 @@ REDModel >> init [
 		
 	self
 		createN: numberOfIndividuals
-		randomlyLocatedEntities: REDIndividual.
+		randomlyLocatedEntities: SEIRIndividual.
 		
 	self spreadInitialInfection.
 ]
 
 { #category : #init }
-REDModel >> initSmall [
+SEIRModel >> initSmall [
 
 	self numberOfIndividuals: self class smallNumberOfIndividuals.
 	self gridDimensions: self class smallGridDimensions.
@@ -159,19 +159,19 @@ REDModel >> initSmall [
 ]
 
 { #category : #accessing }
-REDModel >> initialInfectionProbability [
+SEIRModel >> initialInfectionProbability [
 
 	^ initialInfectionProbability
 ]
 
 { #category : #accessing }
-REDModel >> initialInfectionProbability: anObject [
+SEIRModel >> initialInfectionProbability: anObject [
 
 	initialInfectionProbability := anObject
 ]
 
 { #category : #initialization }
-REDModel >> initialize [
+SEIRModel >> initialize [
 
 	super initialize.
 	
@@ -182,47 +182,47 @@ REDModel >> initialize [
 ]
 
 { #category : #probes }
-REDModel >> numberOfExposed [
+SEIRModel >> numberOfExposed [
 
 	<probe>
 	^ (theIndividuals select: [ :each | each isExposed ]) size
 ]
 
 { #category : #accessing }
-REDModel >> numberOfIndividuals [
+SEIRModel >> numberOfIndividuals [
 
 	^ numberOfIndividuals
 ]
 
 { #category : #accessing }
-REDModel >> numberOfIndividuals: anObject [
+SEIRModel >> numberOfIndividuals: anObject [
 
 	numberOfIndividuals := anObject
 ]
 
 { #category : #probes }
-REDModel >> numberOfInfectious [
+SEIRModel >> numberOfInfectious [
 
 	<probe>
 	^ (theIndividuals select: [ :each | each isInfectious ]) size
 ]
 
 { #category : #probes }
-REDModel >> numberOfRecovered [
+SEIRModel >> numberOfRecovered [
 
 	<probe>
 	^ (theIndividuals select: [ :each | each isRecovered ]) size
 ]
 
 { #category : #probes }
-REDModel >> numberOfSusceptible [
+SEIRModel >> numberOfSusceptible [
 
 	<probe>
 	^ (theIndividuals select: [ :each | each isSusceptible ]) size
 ]
 
 { #category : #'export CSV' }
-REDModel >> probesToCsv [
+SEIRModel >> probesToCsv [
 
 	| probeData rows row |
 	probeData := self data at: self class name.
@@ -240,25 +240,25 @@ REDModel >> probesToCsv [
 ]
 
 { #category : #accessing }
-REDModel >> randomNumberGenerator [
+SEIRModel >> randomNumberGenerator [
 
 	^ randomNumberGenerator
 ]
 
 { #category : #accessing }
-REDModel >> randomNumberGenerator: anObject [
+SEIRModel >> randomNumberGenerator: anObject [
 
 	randomNumberGenerator := anObject
 ]
 
 { #category : #'utilities - random' }
-REDModel >> randomSeed: aNumber [
+SEIRModel >> randomSeed: aNumber [
 
 	randomNumberGenerator := PMMitchellMooreGenerator seed: aNumber.
 ]
 
 { #category : #initialization }
-REDModel >> spreadInitialInfection [
+SEIRModel >> spreadInitialInfection [
 	"Infect several individuals before running the simulation"
 	| numberToInfect individualsToInfect |
 	numberToInfect := initialInfectionProbability * numberOfIndividuals.
@@ -277,31 +277,31 @@ REDModel >> spreadInitialInfection [
 ]
 
 { #category : #control }
-REDModel >> step: anObject [
+SEIRModel >> step: anObject [
 
-	self askRandom: REDIndividual toDo: #step
+	self askRandom: SEIRIndividual toDo: #step
 ]
 
 { #category : #accessing }
-REDModel >> theCells [
+SEIRModel >> theCells [
 
 	^ theCells ifNil: [ theCells := OrderedCollection new ].
 ]
 
 { #category : #accessing }
-REDModel >> theCells: aCollection [
+SEIRModel >> theCells: aCollection [
 
 	theCells := aCollection
 ]
 
 { #category : #accessing }
-REDModel >> theIndividuals [
+SEIRModel >> theIndividuals [
 
 	^ theIndividuals ifNil: [ theIndividuals := OrderedCollection new ]
 ]
 
 { #category : #accessing }
-REDModel >> theIndividuals: aCollection [
+SEIRModel >> theIndividuals: aCollection [
 
 	theIndividuals := aCollection
 ]

@@ -1,11 +1,11 @@
 Class {
-	#name : #BaselineOfREDModel,
+	#name : #BaselineOfSEIRModel,
 	#superclass : #BaselineOf,
-	#category : #BaselineOfREDModel
+	#category : #BaselineOfSEIRModel
 }
 
 { #category : #baselines }
-BaselineOfREDModel >> baseline: spec [
+BaselineOfSEIRModel >> baseline: spec [
 
 	<baseline>
 	spec for: #common do: [ "Dependencies"
@@ -14,12 +14,12 @@ BaselineOfREDModel >> baseline: spec [
 
 		"Packages"
 		spec
-			package: 'RED-Model' with: [ spec requires: #(PolyMath) ];
-			package: 'RED-Model-Tests' with: [ spec requires: #( 'RED-Model' ) ] ]
+			package: 'SEIR-Model' with: [ spec requires: #(PolyMath) ];
+			package: 'SEIR-Model-Tests' with: [ spec requires: #( 'SEIR-Model' ) ] ]
 ]
 
 { #category : #'as yet unclassified' }
-BaselineOfREDModel >> loadCormas: spec [
+BaselineOfSEIRModel >> loadCormas: spec [
 
 	spec
 		baseline: 'Cormas'
@@ -27,7 +27,7 @@ BaselineOfREDModel >> loadCormas: spec [
 ]
 
 { #category : #'as yet unclassified' }
-BaselineOfREDModel >> loadPolyMath: spec [
+BaselineOfSEIRModel >> loadPolyMath: spec [
 
 	spec
 		baseline: 'PolyMath'

@@ -1,25 +1,25 @@
 Class {
-	#name : #REDModelTest,
+	#name : #SEIRModelTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'model'
 	],
-	#category : #'RED-Model-Tests'
+	#category : #'SEIR-Model-Tests'
 }
 
 { #category : #initialization }
-REDModelTest >> setUp [
+SEIRModelTest >> setUp [
 
 	| fixture |
 	super setUp.
 	
-	fixture := REDModelFixture new.
+	fixture := SEIRModelFixture new.
 	model := fixture model.
 	
 ]
 
 { #category : #tests }
-REDModelTest >> testCellAtAt [
+SEIRModelTest >> testCellAtAt [
 
 	self assert: (model cellAt: 1 at: 1) equals: model spaceModel upperLeftLocation.
 	self assert: (model cellAt: 1 at: 4) equals: model spaceModel upperRightLocation.

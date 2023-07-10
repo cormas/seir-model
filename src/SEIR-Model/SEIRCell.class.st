@@ -1,17 +1,17 @@
 Class {
-	#name : #REDCell,
+	#name : #SEIRCell,
 	#superclass : #CMSpatialEntityElement,
-	#category : #'RED-Model-Core'
+	#category : #'SEIR-Model-Core'
 }
 
 { #category : #accessing }
-REDCell class >> entityName [
+SEIRCell class >> entityName [
 
 	^ 'Cell'
 ]
 
 { #category : #pov }
-REDCell >> pov [
+SEIRCell >> pov [
 
 	^ Color black
 ]

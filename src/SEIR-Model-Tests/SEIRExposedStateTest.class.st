@@ -1,23 +1,23 @@
 Class {
-	#name : #REDExposedStateTest,
-	#superclass : #REDStateTest,
-	#category : #'RED-Model-Tests'
+	#name : #SEIRExposedStateTest,
+	#superclass : #SEIRStateTest,
+	#category : #'SEIR-Model-Tests'
 }
 
 { #category : #initialization }
-REDExposedStateTest >> stateClass [
+SEIRExposedStateTest >> stateClass [
 
-	^ REDExposedState
+	^ SEIRExposedState
 ]
 
 { #category : #'as yet unclassified' }
-REDExposedStateTest >> testIsExposed [
+SEIRExposedStateTest >> testIsExposed [
 
 	self assert: self state isExposed
 ]
 
 { #category : #tests }
-REDExposedStateTest >> testNewState [
+SEIRExposedStateTest >> testNewState [
 
 	(individual incubationPeriod - 1) timesRepeat: [ 
 		self assert: state newState isExposed ].

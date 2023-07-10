@@ -1,32 +1,32 @@
 Class {
-	#name : #REDStateTest,
+	#name : #SEIRStateTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'individual',
 		'state'
 	],
-	#category : #'RED-Model-Tests'
+	#category : #'SEIR-Model-Tests'
 }
 
 { #category : #testing }
-REDStateTest class >> isAbstract [
+SEIRStateTest class >> isAbstract [
 
-	^ self = REDStateTest
+	^ self = SEIRStateTest
 ]
 
 { #category : #testing }
-REDStateTest class >> shouldInheritSelectors [
+SEIRStateTest class >> shouldInheritSelectors [
 
 	^ true
 ]
 
 { #category : #initialization }
-REDStateTest >> setUp [
+SEIRStateTest >> setUp [
 	
 	| fixture |
 	super setUp.
 	
-	fixture := REDModelFixture new.
+	fixture := SEIRModelFixture new.
 	individual := fixture individual.
 	state := self stateClass forIndividual: individual.
 	
@@ -36,49 +36,49 @@ REDStateTest >> setUp [
 ]
 
 { #category : #accessing }
-REDStateTest >> state [
+SEIRStateTest >> state [
 
 	^ state
 ]
 
 { #category : #initialization }
-REDStateTest >> stateClass [
+SEIRStateTest >> stateClass [
 
 	self subclassResponsibility
 ]
 
 { #category : #tests }
-REDStateTest >> testColor [
+SEIRStateTest >> testColor [
 
 	self assert: (self state color isKindOf: Color)
 ]
 
 { #category : #tests }
-REDStateTest >> testIsExposed [
+SEIRStateTest >> testIsExposed [
 
 	self deny: self state isExposed
 ]
 
 { #category : #tests }
-REDStateTest >> testIsInfectious [
+SEIRStateTest >> testIsInfectious [
 
 	self deny: self state isInfectious 
 ]
 
 { #category : #tests }
-REDStateTest >> testIsRecovered [
+SEIRStateTest >> testIsRecovered [
 
 	self deny: self state isRecovered
 ]
 
 { #category : #tests }
-REDStateTest >> testIsSusceptible [
+SEIRStateTest >> testIsSusceptible [
 
 	self deny: self state isSusceptible
 ]
 
 { #category : #'instance creation' }
-REDStateTest >> testNewState [
+SEIRStateTest >> testNewState [
 
 	self subclassResponsibility
 ]

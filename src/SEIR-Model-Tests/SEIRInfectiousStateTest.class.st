@@ -1,23 +1,23 @@
 Class {
-	#name : #REDInfectiousStateTest,
-	#superclass : #REDStateTest,
-	#category : #'RED-Model-Tests'
+	#name : #SEIRInfectiousStateTest,
+	#superclass : #SEIRStateTest,
+	#category : #'SEIR-Model-Tests'
 }
 
 { #category : #initialization }
-REDInfectiousStateTest >> stateClass [
+SEIRInfectiousStateTest >> stateClass [
 
-	^ REDInfectiousState
+	^ SEIRInfectiousState
 ]
 
 { #category : #'as yet unclassified' }
-REDInfectiousStateTest >> testIsInfectious [
+SEIRInfectiousStateTest >> testIsInfectious [
 
 	self assert: self state isInfectious 
 ]
 
 { #category : #tests }
-REDInfectiousStateTest >> testNewState [
+SEIRInfectiousStateTest >> testNewState [
 
 	(individual infectiousPeriod - 1) timesRepeat: [ 
 		self assert: state newState isInfectious ].

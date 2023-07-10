@@ -1,5 +1,5 @@
 Class {
-	#name : #REDIndividual,
+	#name : #SEIRIndividual,
 	#superclass : #CMLocatedAgent,
 	#instVars : [
 		'state',
@@ -7,99 +7,99 @@ Class {
 		'infectiousPeriod',
 		'immunityPeriod'
 	],
-	#category : #'RED-Model-Core'
+	#category : #'SEIR-Model-Core'
 }
 
 { #category : #accessing }
-REDIndividual class >> entityName [
+SEIRIndividual class >> entityName [
 
 	^ 'Individual'
 ]
 
 { #category : #'as yet unclassified' }
-REDIndividual class >> infectionRate [
+SEIRIndividual class >> infectionRate [
 
 	^ 0.5
 ]
 
 { #category : #'as yet unclassified' }
-REDIndividual class >> meanImmunityPeriod [
+SEIRIndividual class >> meanImmunityPeriod [
 
 	^ 365
 ]
 
 { #category : #'as yet unclassified' }
-REDIndividual class >> meanIncubationPeriod [
+SEIRIndividual class >> meanIncubationPeriod [
 
 	^ 3
 ]
 
 { #category : #'as yet unclassified' }
-REDIndividual class >> meanInfectiousPeriod [
+SEIRIndividual class >> meanInfectiousPeriod [
 
 	^ 7
 ]
 
 { #category : #accessing }
-REDIndividual >> immunityPeriod [
+SEIRIndividual >> immunityPeriod [
 	"Personal immunity period"
 	
 	^ immunityPeriod
 ]
 
 { #category : #accessing }
-REDIndividual >> immunityPeriod: anInteger [
+SEIRIndividual >> immunityPeriod: anInteger [
 	"Personal immunity period"
 	
 	immunityPeriod := anInteger
 ]
 
 { #category : #accessing }
-REDIndividual >> incubationPeriod [
+SEIRIndividual >> incubationPeriod [
 	"Personal incubation period"
 	
 	^ incubationPeriod
 ]
 
 { #category : #accessing }
-REDIndividual >> incubationPeriod: anInteger [
+SEIRIndividual >> incubationPeriod: anInteger [
 	"Personal incubation period"
 	
 	incubationPeriod := anInteger
 ]
 
 { #category : #'as yet unclassified' }
-REDIndividual >> infect [
+SEIRIndividual >> infect [
 	"Infect this individual"
-	state := REDInfectiousState forIndividual: self.
+	state := SEIRInfectiousState forIndividual: self.
 ]
 
 { #category : #'as yet unclassified' }
-REDIndividual >> infectionProbability [
+SEIRIndividual >> infectionProbability [
 	"The probability that a susceptible individual gets infected"
 	^ 1 - (-1 * self class infectionRate * self numberOfInfectiousNeighbours) exp
 ]
 
 { #category : #accessing }
-REDIndividual >> infectiousPeriod [
+SEIRIndividual >> infectiousPeriod [
 	"Personal infectious period"
 	
 	^ infectiousPeriod
 ]
 
 { #category : #accessing }
-REDIndividual >> infectiousPeriod: anInteger [
+SEIRIndividual >> infectiousPeriod: anInteger [
 	"Personal infectious period"
 	
 	infectiousPeriod := anInteger
 ]
 
 { #category : #initialization }
-REDIndividual >> initialize [
+SEIRIndividual >> initialize [
 
 	super initialize.
 	
-	state := REDSusceptibleState forIndividual: self.
+	state := SEIRSusceptibleState forIndividual: self.
 		
 	self initializeIncubationPeriod.
 	self initializeInfectiousPeriod.
@@ -107,7 +107,7 @@ REDIndividual >> initialize [
 ]
 
 { #category : #initialization }
-REDIndividual >> initializeImmunityPeriod [
+SEIRIndividual >> initializeImmunityPeriod [
 
 	| distribution |
 	
@@ -116,7 +116,7 @@ REDIndividual >> initializeImmunityPeriod [
 ]
 
 { #category : #initialization }
-REDIndividual >> initializeIncubationPeriod [
+SEIRIndividual >> initializeIncubationPeriod [
 
 	| distribution |
 	
@@ -125,7 +125,7 @@ REDIndividual >> initializeIncubationPeriod [
 ]
 
 { #category : #initialization }
-REDIndividual >> initializeInfectiousPeriod [
+SEIRIndividual >> initializeInfectiousPeriod [
 
 	| distribution |
 	
@@ -134,50 +134,50 @@ REDIndividual >> initializeInfectiousPeriod [
 ]
 
 { #category : #testing }
-REDIndividual >> isExposed [
+SEIRIndividual >> isExposed [
 
 	^ state isExposed
 ]
 
 { #category : #testing }
-REDIndividual >> isInfectious [
+SEIRIndividual >> isInfectious [
 
 	^ state isInfectious
 ]
 
 { #category : #testing }
-REDIndividual >> isRecovered [
+SEIRIndividual >> isRecovered [
 
 	^ state isRecovered
 ]
 
 { #category : #testing }
-REDIndividual >> isSusceptible [
+SEIRIndividual >> isSusceptible [
 
 	^ state isSusceptible
 ]
 
 { #category : #accessing }
-REDIndividual >> move [
+SEIRIndividual >> move [
 
 	self randomJump.
 ]
 
 { #category : #'as yet unclassified' }
-REDIndividual >> numberOfInfectiousNeighbours [
+SEIRIndividual >> numberOfInfectiousNeighbours [
 
 	^ ((self neighbouringSimilarAgents, self colocatedSimilarAgents)
 		select: [ :each | each isInfectious ]) size
 ]
 
 { #category : #pov }
-REDIndividual >> pov [
+SEIRIndividual >> pov [
 
 	^ state color
 ]
 
 { #category : #accessing }
-REDIndividual >> step [
+SEIRIndividual >> step [
 
 	self move.
 	state := state newState.

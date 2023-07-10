@@ -1,27 +1,27 @@
 Class {
-	#name : #REDRecoveredState,
-	#superclass : #REDState,
-	#category : #'RED-Model-State'
+	#name : #SEIRRecoveredState,
+	#superclass : #SEIRState,
+	#category : #'SEIR-Model-State'
 }
 
 { #category : #accessing }
-REDRecoveredState >> color [
+SEIRRecoveredState >> color [
 
 	^ Color r: 0.19941348973607037 g: 0.6265884652981427 b: 0.17204301075268819 alpha: 1.0
 ]
 
 { #category : #testing }
-REDRecoveredState >> isRecovered [
+SEIRRecoveredState >> isRecovered [
 
 	^ true
 ]
 
 { #category : #'instance creation' }
-REDRecoveredState >> newState [
+SEIRRecoveredState >> newState [
 
 	self incrementDayCount.
 	
 	^ dayCount >= individual immunityPeriod
-		ifTrue: [ REDSusceptibleState forIndividual: individual ]
+		ifTrue: [ SEIRSusceptibleState forIndividual: individual ]
 		ifFalse: [ self ]
 ]
