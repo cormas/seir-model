@@ -1,17 +1,14 @@
 Class {
 	#name : #SEIRModelParametersTest,
 	#superclass : #TestCase,
-	#instVars : [
-		'individual',
-		'model'
-	],
 	#category : #'SEIR-Model-Tests'
 }
 
 { #category : #tests }
 SEIRModelParametersTest >> testGridDimensions [
 
-	self assert: SEIRModel new gridDimensions equals: 300@300
+	self assert: SEIRModel new numberOfRows equals: 300.
+	self assert: SEIRModel new numberOfColumns equals: 300.
 ]
 
 { #category : #tests }

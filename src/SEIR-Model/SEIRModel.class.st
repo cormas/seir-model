@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'theIndividuals',
 		'theCells',
-		'gridDimensions',
+		'numberOfRows',
+		'numberOfColumns',
 		'numberOfIndividuals',
 		'initialInfectionProbability',
 		'randomNumberGenerator'
@@ -36,12 +37,6 @@ SEIRModel class >> colorOfProbe_numberOfSusceptible [
 	^ SEIRSusceptibleState new color
 ]
 
-{ #category : #'default parameters' }
-SEIRModel class >> defaultGridDimensions [
-
-	^ 300 @ 300
-]
-
 { #category : #'simulation settings' }
 SEIRModel class >> defaultInit [
 
@@ -56,9 +51,21 @@ SEIRModel class >> defaultInitialInfectionProbability [
 ]
 
 { #category : #'default parameters' }
+SEIRModel class >> defaultNumberOfColumns [
+
+	^ 300
+]
+
+{ #category : #'default parameters' }
 SEIRModel class >> defaultNumberOfIndividuals [
 
 	^ 20000
+]
+
+{ #category : #'default parameters' }
+SEIRModel class >> defaultNumberOfRows [
+
+	^ 300
 ]
 
 { #category : #'simulation settings' }
@@ -136,33 +143,19 @@ SEIRModel >> cellAt: rowNumber at: columnNumber [
 	"A helper method for testing.
 	Return the cell (i,j) from the rectangular spatial grid"
 	
-	| cells numberOfColumns |
-	
-	numberOfColumns := self spaceModel column.
+	| cells |
 	cells := self spaceModel spatialEntitiesAt: self class cellClass name.
 	
 	^ cells at: ((rowNumber - 1) * numberOfColumns + columnNumber).
 	
 ]
 
-{ #category : #accessing }
-SEIRModel >> gridDimensions [
-
-	^ gridDimensions
-]
-
-{ #category : #accessing }
-SEIRModel >> gridDimensions: anObject [
-
-	gridDimensions := anObject
-]
-
 { #category : #init }
 SEIRModel >> init [
 
 	self
-		createGridLines: gridDimensions x
-		columns: gridDimensions y
+		createGridLines: numberOfRows
+		columns: numberOfColumns
 		neighbourhood: 8
 		closed: true.
 		
@@ -199,10 +192,24 @@ SEIRModel >> initialize [
 
 	super initialize.
 	
-	gridDimensions := self class defaultGridDimensions.
+	numberOfRows := self class defaultNumberOfRows.
+	numberOfColumns := self class defaultNumberOfColumns.
+	
 	numberOfIndividuals := self class defaultNumberOfIndividuals.
 	initialInfectionProbability := self class defaultInitialInfectionProbability.
 	randomNumberGenerator := self class defaultRandomNumberGenerator.
+]
+
+{ #category : #accessing }
+SEIRModel >> numberOfColumns [
+
+	^ numberOfColumns
+]
+
+{ #category : #accessing }
+SEIRModel >> numberOfColumns: anObject [
+
+	numberOfColumns := anObject
 ]
 
 { #category : #probes }
@@ -236,6 +243,18 @@ SEIRModel >> numberOfRecovered [
 
 	<probe>
 	^ (theIndividuals select: [ :each | each isRecovered ]) size
+]
+
+{ #category : #accessing }
+SEIRModel >> numberOfRows [
+
+	^ numberOfRows
+]
+
+{ #category : #accessing }
+SEIRModel >> numberOfRows: anObject [
+
+	numberOfRows := anObject
 ]
 
 { #category : #probes }

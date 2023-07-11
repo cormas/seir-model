@@ -27,7 +27,8 @@ SEIRModelFixture >> initialize [
 	super initialize.
 	
 	model := SEIRModel new
-		gridDimensions: 4@4;
+		numberOfRows: 4;
+		numberOfColumns: 4;
 		numberOfIndividuals: 0;
 		randomSeed: 42;
 		initSimulation;
