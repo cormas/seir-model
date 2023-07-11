@@ -31,7 +31,7 @@ SEIRModelFixture >> initialize [
 		numberOfColumns: 4;
 		numberOfIndividuals: 0;
 		randomSeed: 42;
-		initSimulation;
+		initializeSimulation;
 		yourself.
 		
 	individual := model newEntity: SEIRIndividual.
