@@ -1,6 +1,8 @@
 Class {
 	#name : #SEIRIndividual,
-	#superclass : #CMLocatedAgent,
+	#superclass : #CMAgent,
+	#traits : 'TCMLocated',
+	#classTraits : 'TCMLocated classTrait',
 	#instVars : [
 		'state',
 		'incubationPeriod',
