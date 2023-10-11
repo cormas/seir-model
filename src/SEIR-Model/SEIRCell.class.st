@@ -4,12 +4,6 @@ Class {
 	#category : #'SEIR-Model-Core'
 }
 
-{ #category : #accessing }
-SEIRCell class >> entityName [
-
-	^ 'Cell'
-]
-
 { #category : #pov }
 SEIRCell >> pov [
 

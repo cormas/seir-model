@@ -12,12 +12,6 @@ Class {
 	#category : #'SEIR-Model-Core'
 }
 
-{ #category : #accessing }
-SEIRIndividual class >> entityName [
-
-	^ 'Individual'
-]
-
 { #category : #'as yet unclassified' }
 SEIRIndividual class >> infectionRate [
 

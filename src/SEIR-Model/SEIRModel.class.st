@@ -192,6 +192,9 @@ SEIRModel >> initialize [
 
 	super initialize.
 	
+	theCells := OrderedCollection new.
+	theIndividuals := OrderedCollection new.
+	
 	numberOfRows := self class defaultNumberOfRows.
 	numberOfColumns := self class defaultNumberOfColumns.
 	
@@ -328,23 +331,13 @@ SEIRModel >> step: anObject [
 { #category : #accessing }
 SEIRModel >> theCells [
 
-	^ theCells ifNil: [ theCells := OrderedCollection new ].
-]
-
-{ #category : #accessing }
-SEIRModel >> theCells: aCollection [
-
-	theCells := aCollection
+	<getterFor: #SEIRCell>
+	^ theCells
 ]
 
 { #category : #accessing }
 SEIRModel >> theIndividuals [
 
-	^ theIndividuals ifNil: [ theIndividuals := OrderedCollection new ]
-]
-
-{ #category : #accessing }
-SEIRModel >> theIndividuals: aCollection [
-
-	theIndividuals := aCollection
+	<getterFor: #SEIRIndividual>
+	^ theIndividuals
 ]
