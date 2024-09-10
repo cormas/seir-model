@@ -1,35 +1,18 @@
 Class {
-	#name : #BaselineOfSEIRModel,
-	#superclass : #BaselineOf,
-	#category : #BaselineOfSEIRModel
+	#name : 'BaselineOfSEIRModel',
+	#superclass : 'BaselineOf',
+	#category : 'BaselineOfSEIRModel',
+	#package : 'BaselineOfSEIRModel'
 }
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfSEIRModel >> baseline: spec [
 
 	<baseline>
 	spec for: #common do: [ "Dependencies"
-		self loadCormas: spec.
-		self loadPolyMath: spec.
 
 		"Packages"
 		spec
-			package: 'SEIR-Model' with: [ spec requires: #(PolyMath) ];
+			package: 'SEIR-Model';
 			package: 'SEIR-Model-Tests' with: [ spec requires: #( 'SEIR-Model' ) ] ]
-]
-
-{ #category : #'as yet unclassified' }
-BaselineOfSEIRModel >> loadCormas: spec [
-
-	spec
-		baseline: 'Cormas'
-		with: [ spec loads: #(Core); repository: 'github://cormas/cormas' ]
-]
-
-{ #category : #'as yet unclassified' }
-BaselineOfSEIRModel >> loadPolyMath: spec [
-
-	spec
-		baseline: 'PolyMath'
-		with: [ spec repository: 'github://PolyMathOrg/PolyMath:v1.0.5/src' ]
 ]

@@ -1,1 +1,1 @@
-Package { #name : #BaselineOfSEIRModel }
+Package { #name : 'BaselineOfSEIRModel' }
