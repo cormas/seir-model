@@ -9,5 +9,6 @@ Class {
 { #category : 'pov' }
 SEIRCell >> pov [
 
-	^ Color black
+	<pov>
+	^ CMPointOfView color: CMColor black
 ]

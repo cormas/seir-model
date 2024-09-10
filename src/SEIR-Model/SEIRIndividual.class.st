@@ -171,7 +171,7 @@ SEIRIndividual >> numberOfInfectiousNeighbours [
 { #category : 'pov' }
 SEIRIndividual >> pov [
 
-	^ state color
+	^ CMPointOfView color: state color
 ]
 
 { #category : 'accessing' }
