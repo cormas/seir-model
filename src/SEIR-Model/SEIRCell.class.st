@@ -1,10 +1,12 @@
 Class {
-	#name : #SEIRCell,
-	#superclass : #CMSpatialEntityElement,
-	#category : #'SEIR-Model-Core'
+	#name : 'SEIRCell',
+	#superclass : 'CMSpatialEntityElement',
+	#category : 'SEIR-Model-Core',
+	#package : 'SEIR-Model',
+	#tag : 'Core'
 }
 
-{ #category : #pov }
+{ #category : 'pov' }
 SEIRCell >> pov [
 
 	^ Color black

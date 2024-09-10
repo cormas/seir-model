@@ -1,1 +1,1 @@
-Package { #name : #'SEIR-Model' }
+Package { #name : 'SEIR-Model' }

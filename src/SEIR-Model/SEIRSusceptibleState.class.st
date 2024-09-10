@@ -1,22 +1,24 @@
 Class {
-	#name : #SEIRSusceptibleState,
-	#superclass : #SEIRState,
-	#category : #'SEIR-Model-State'
+	#name : 'SEIRSusceptibleState',
+	#superclass : 'SEIRState',
+	#category : 'SEIR-Model-State',
+	#package : 'SEIR-Model',
+	#tag : 'State'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SEIRSusceptibleState >> color [
 
 	^ Color gray
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 SEIRSusceptibleState >> isSusceptible [
 
 	^ true
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 SEIRSusceptibleState >> newState [
 
 	| rand |

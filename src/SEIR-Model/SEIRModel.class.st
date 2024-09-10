@@ -1,86 +1,87 @@
 Class {
-	#name : #SEIRModel,
-	#superclass : #CMAbstractModel,
+	#name : 'SEIRModel',
+	#superclass : 'CMAbstractModel',
 	#instVars : [
 		'theIndividuals',
 		'theCells',
 		'numberOfRows',
 		'numberOfColumns',
 		'numberOfIndividuals',
-		'initialInfectionProbability',
-		'randomNumberGenerator'
+		'initialInfectionProbability'
 	],
-	#category : #'SEIR-Model-Core'
+	#category : 'SEIR-Model-Core',
+	#package : 'SEIR-Model',
+	#tag : 'Core'
 }
 
-{ #category : #'- probes' }
+{ #category : '- probes' }
 SEIRModel class >> colorOfProbe_numberOfExposed [
 	<ignoreForCoverage>
 	^ SEIRExposedState new color
 ]
 
-{ #category : #'- probes' }
+{ #category : '- probes' }
 SEIRModel class >> colorOfProbe_numberOfInfectious [
 	<ignoreForCoverage>
 	^ SEIRInfectiousState new color
 ]
 
-{ #category : #'- probes' }
+{ #category : '- probes' }
 SEIRModel class >> colorOfProbe_numberOfRecovered [
 	<ignoreForCoverage>
 	^ SEIRRecoveredState new color
 ]
 
-{ #category : #'- probes' }
+{ #category : '- probes' }
 SEIRModel class >> colorOfProbe_numberOfSusceptible [
 	<ignoreForCoverage>
 	^ SEIRSusceptibleState new color
 ]
 
-{ #category : #'simulation settings' }
+{ #category : 'simulation settings' }
 SEIRModel class >> defaultInit [
 
 	^ #init
 ]
 
-{ #category : #'default parameters' }
+{ #category : 'default parameters' }
 SEIRModel class >> defaultInitialInfectionProbability [
 	"The probability that an individual is initialized with infection"
 	
 	^ 0.001
 ]
 
-{ #category : #'default parameters' }
+{ #category : 'default parameters' }
 SEIRModel class >> defaultNumberOfColumns [
 
 	^ 300
 ]
 
-{ #category : #'default parameters' }
+{ #category : 'default parameters' }
 SEIRModel class >> defaultNumberOfIndividuals [
 
 	^ 20000
 ]
 
-{ #category : #'default parameters' }
+{ #category : 'default parameters' }
 SEIRModel class >> defaultNumberOfRows [
 
 	^ 300
 ]
 
-{ #category : #'simulation settings' }
+{ #category : 'simulation settings' }
 SEIRModel class >> defaultProbes [
 
 	^ self probes
 ]
 
-{ #category : #'default parameters' }
+{ #category : 'default parameters' }
 SEIRModel class >> defaultRandomNumberGenerator [
 
 	^ PMMitchellMooreGenerator new
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SEIRModel class >> run2Replications [
 	"Run 2 replications of simulation and save data to the CSV files"
 	<example>
@@ -104,7 +105,7 @@ SEIRModel class >> run2Replications [
 	] displayingProgress: [ :i | 'Running replication number ', i asString ].
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 SEIRModel class >> run30Replications [
 	"Run 30 replications of simulation and save data to the CSV files"
 	<example>
@@ -126,19 +127,19 @@ SEIRModel class >> run30Replications [
 	] displayingProgress: [ :i | 'Running replication number ', i asString ].
 ]
 
-{ #category : #'default parameters' }
+{ #category : 'default parameters' }
 SEIRModel class >> smallGridDimensions [
 
 	^ 100 @ 100
 ]
 
-{ #category : #'default parameters' }
+{ #category : 'default parameters' }
 SEIRModel class >> smallNumberOfIndividuals [
 
 	^ 1000
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SEIRModel >> cellAt: rowNumber at: columnNumber [
 	"A helper method for testing.
 	Return the cell (i,j) from the rectangular spatial grid"
@@ -150,7 +151,7 @@ SEIRModel >> cellAt: rowNumber at: columnNumber [
 	
 ]
 
-{ #category : #init }
+{ #category : 'init' }
 SEIRModel >> init [
 
 	self
@@ -166,7 +167,7 @@ SEIRModel >> init [
 	self spreadInitialInfection.
 ]
 
-{ #category : #init }
+{ #category : 'init' }
 SEIRModel >> initSmall [
 
 	self numberOfIndividuals: self class smallNumberOfIndividuals.
@@ -175,19 +176,19 @@ SEIRModel >> initSmall [
 	self init.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SEIRModel >> initialInfectionProbability [
 
 	^ initialInfectionProbability
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SEIRModel >> initialInfectionProbability: anObject [
 
 	initialInfectionProbability := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SEIRModel >> initialize [
 
 	super initialize.
@@ -203,71 +204,71 @@ SEIRModel >> initialize [
 	randomNumberGenerator := self class defaultRandomNumberGenerator.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SEIRModel >> numberOfColumns [
 
 	^ numberOfColumns
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SEIRModel >> numberOfColumns: anObject [
 
 	numberOfColumns := anObject
 ]
 
-{ #category : #probes }
+{ #category : 'probes' }
 SEIRModel >> numberOfExposed [
 
 	<probe>
 	^ (theIndividuals select: [ :each | each isExposed ]) size
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SEIRModel >> numberOfIndividuals [
 
 	^ numberOfIndividuals
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SEIRModel >> numberOfIndividuals: anObject [
 
 	numberOfIndividuals := anObject
 ]
 
-{ #category : #probes }
+{ #category : 'probes' }
 SEIRModel >> numberOfInfectious [
 
 	<probe>
 	^ (theIndividuals select: [ :each | each isInfectious ]) size
 ]
 
-{ #category : #probes }
+{ #category : 'probes' }
 SEIRModel >> numberOfRecovered [
 
 	<probe>
 	^ (theIndividuals select: [ :each | each isRecovered ]) size
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SEIRModel >> numberOfRows [
 
 	^ numberOfRows
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SEIRModel >> numberOfRows: anObject [
 
 	numberOfRows := anObject
 ]
 
-{ #category : #probes }
+{ #category : 'probes' }
 SEIRModel >> numberOfSusceptible [
 
 	<probe>
 	^ (theIndividuals select: [ :each | each isSusceptible ]) size
 ]
 
-{ #category : #'export CSV' }
+{ #category : 'export CSV' }
 SEIRModel >> probesToCsv [
 
 	| probeData rows row |
@@ -285,25 +286,25 @@ SEIRModel >> probesToCsv [
 	^ String cr join: (rows collect: [ :each | ',' join: each ])
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SEIRModel >> randomNumberGenerator [
 
 	^ randomNumberGenerator
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SEIRModel >> randomNumberGenerator: anObject [
 
 	randomNumberGenerator := anObject
 ]
 
-{ #category : #'utilities - random' }
+{ #category : 'utilities - random' }
 SEIRModel >> randomSeed: aNumber [
 
 	randomNumberGenerator := PMMitchellMooreGenerator seed: aNumber.
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 SEIRModel >> spreadInitialInfection [
 	"Infect several individuals before running the simulation"
 	| numberToInfect individualsToInfect |
@@ -322,20 +323,20 @@ SEIRModel >> spreadInitialInfection [
 	
 ]
 
-{ #category : #control }
+{ #category : 'control' }
 SEIRModel >> step: anObject [
 
 	self askRandom: SEIRIndividual toDo: #step
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SEIRModel >> theCells [
 
 	<getterFor: #SEIRCell>
 	^ theCells
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 SEIRModel >> theIndividuals [
 
 	<getterFor: #SEIRIndividual>
