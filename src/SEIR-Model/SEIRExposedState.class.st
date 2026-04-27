@@ -1,9 +1,9 @@
 Class {
 	#name : 'SEIRExposedState',
 	#superclass : 'SEIRState',
-	#category : 'SEIR-Model-State',
+	#category : 'SEIR-Model-Core',
 	#package : 'SEIR-Model',
-	#tag : 'State'
+	#tag : 'Core'
 }
 
 { #category : 'accessing' }

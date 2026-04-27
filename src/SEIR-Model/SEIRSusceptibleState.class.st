@@ -1,9 +1,9 @@
 Class {
 	#name : 'SEIRSusceptibleState',
 	#superclass : 'SEIRState',
-	#category : 'SEIR-Model-State',
+	#category : 'SEIR-Model-Core',
 	#package : 'SEIR-Model',
-	#tag : 'State'
+	#tag : 'Core'
 }
 
 { #category : 'accessing' }
@@ -22,9 +22,10 @@ SEIRSusceptibleState >> isSusceptible [
 SEIRSusceptibleState >> newState [
 
 	| rand |
-	rand := individual cormasModel randomNumberGenerator. 
-
-	^ rand floatValue < individual infectionProbability
+	rand := individual random. 
+	(individual colocatedEntity: individual class name verifying: [:a | a isInfectious]) ifNotNil: [  
+	^ rand < individual infectionProbability
 		ifTrue: [ SEIRExposedState forIndividual: individual ]
-		ifFalse: [ self ]
+		ifFalse: [ self ]].
+	^self
 ]

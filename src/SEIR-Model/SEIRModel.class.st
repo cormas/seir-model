@@ -44,10 +44,10 @@ SEIRModel class >> initialNumberOfIndividuals: anObject [
 SEIRModel class >> initializeParameters [
 
 	super initializeParameters.
-	numberOfRows := 100.
-	numberOfColumns := 100.
-	initialNumberOfIndividuals := 1000.
-	initialInfectionProbability := 0.001.
+	numberOfRows := 80.
+	numberOfColumns := 80.
+	initialNumberOfIndividuals := 5000.
+	initialInfectionProbability := 0.01
 ]
 
 { #category : 'accessing' }
@@ -168,29 +168,29 @@ SEIRModel >> initializeNumberOfRows: aNumberOfRows numberOfColumns: aNumberOfCol
 { #category : 'probes' }
 SEIRModel >> numberOfExposed [
 
-	<probeNamed: 'Number of exposed' color: ''>
-	^ (theIndividuals select: [ :each | each isExposed ]) size
+	<probeNamed: 'Number of exposed' color: '00B4F6'>
+	^ (self theIndividuals select: [ :each | each isExposed ]) size
 ]
 
 { #category : 'probes' }
 SEIRModel >> numberOfInfectious [
 
-	<probeNamed: 'Number of infectious' color: ''>
-	^ (theIndividuals select: [ :each | each isInfectious ]) size
+	<probeNamed: 'Number of infectious' color: 'F60000'>
+	^ (self theIndividuals select: [ :each | each isInfectious ]) size
 ]
 
 { #category : 'probes' }
 SEIRModel >> numberOfRecovered [
 
-	<probeNamed: 'Number of recovered' color: ''>
-	^ (theIndividuals select: [ :each | each isRecovered ]) size
+	<probeNamed: 'Number of recovered' color: '714CA5'>
+	^ (self theIndividuals select: [ :each | each isRecovered ]) size
 ]
 
 { #category : 'probes' }
 SEIRModel >> numberOfSusceptible [
 
-	<probeNamed: 'Number of susceptible' color: ''>
-	^ (theIndividuals select: [ :each | each isSusceptible ]) size
+	<probeNamed: 'Number of susceptible' color: '0000FF'>
+	^ (self theIndividuals select: [ :each | each isSusceptible ]) size
 ]
 
 { #category : 'export CSV' }
@@ -214,27 +214,26 @@ SEIRModel >> probesToCsv [
 { #category : 'initialization' }
 SEIRModel >> spreadInitialInfection [
 	"Infect several individuals before running the simulation"
+
 	| numberToInfect individualsToInfect |
-	numberToInfect := self class initialInfectionProbability * self class initialNumberOfIndividuals.
-	
-	numberToInfect > theIndividuals size ifTrue: [ 
+	numberToInfect := (self class initialInfectionProbability
+	                   * self class initialNumberOfIndividuals) rounded.
+
+	numberToInfect > self theIndividuals size ifTrue: [
 		self error: 'Not enough individuals to spread the initial infection' ].
-	
-	individualsToInfect := Set new.
-	
-	[ individualsToInfect size < numberToInfect ] whileTrue: [ 
-		individualsToInfect add: self theIndividuals atRandom ].
-	
-	individualsToInfect do: [ :each | each infect ].
-	
-	
+
+	individualsToInfect := self
+		                       selectRandomlyFrom: self theIndividuals
+		                       size: numberToInfect.
+		
+	individualsToInfect do: [ :each | each infect ]
 ]
 
 { #category : 'control' }
-SEIRModel >> step: anObject [
+SEIRModel >> step: aStep [
 
 	<control>
-	self askRandom: SEIRIndividual toDo: #step
+	self theIndividuals shuffled do: #step
 ]
 
 { #category : 'accessing' }
@@ -248,5 +247,5 @@ SEIRModel >> theCells [
 SEIRModel >> theIndividuals [
 
 	<getterFor: #SEIRIndividual>
-	^ theIndividuals
+	^ (self @@ SEIRIndividual)
 ]

@@ -66,13 +66,15 @@ SEIRIndividual >> incubationPeriod: anInteger [
 	incubationPeriod := anInteger
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'control' }
 SEIRIndividual >> infect [
 	"Infect this individual"
-	state := SEIRInfectiousState forIndividual: self.
+
+	"state individual: nil."
+	state := SEIRInfectiousState forIndividual: self
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'control' }
 SEIRIndividual >> infectionProbability [
 	"The probability that a susceptible individual gets infected"
 	^ 1 - (-1 * self class infectionRate * self numberOfInfectiousNeighbours) exp
@@ -161,7 +163,7 @@ SEIRIndividual >> move [
 	self randomJump.
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'control' }
 SEIRIndividual >> numberOfInfectiousNeighbours [
 
 	^ ((self neighbouringSimilarAgents, self colocatedSimilarAgents)
@@ -174,7 +176,7 @@ SEIRIndividual >> pov [
 	^ CMPointOfView color: state color
 ]
 
-{ #category : 'accessing' }
+{ #category : 'control' }
 SEIRIndividual >> step [
 
 	self move.
